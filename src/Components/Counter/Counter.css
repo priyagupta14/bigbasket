@@ -1,0 +1,8 @@
+.product-counter {
+  display: flex;
+  background-color: rgb(197, 190, 190);
+}
+.product-counter > p {
+  height: 1rem;
+  width: 5rem;
+}
