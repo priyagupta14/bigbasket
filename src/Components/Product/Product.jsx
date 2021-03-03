@@ -11,7 +11,7 @@ class Product extends Component {
       <div className="product-card-element">
         <p>{this.props.product.name}</p>
         <img src="{this.props.product.url}" alt="fruitItem" />
-        <p>{this.props.product.price}</p>
+        <p>MRP {this.props.product.price}/-</p>
         <Counter
           onIncrement={this.props.onIncrement}
           onDecrement={this.props.onDecrement}
