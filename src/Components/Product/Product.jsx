@@ -13,7 +13,7 @@ class Product extends Component {
         <img src="{this.props.product.url}" alt="fruitItem" />
         <p>MRP {this.props.product.price}/-</p>
         <Counter
-          onIncrement={this.props.onIncrement}
+          onIncrement={() => this.props.onIncrement(this.props.product.id)}
           onDecrement={this.props.onDecrement}
           itemCount={this.props.product.count}
         />
