@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Product from "../Product/Product";
 import "./Home.css";
-export default class home extends Component {
+export default class Home extends Component {
   render() {
-    console.log(45, this.props);
     const allProducts = this.props.productList.products.map((eachProduct) => {
       return (
         <Product
@@ -22,3 +21,15 @@ export default class home extends Component {
     );
   }
 }
+
+// const ProductList = {
+//   id: PropTypes.number,
+//   name: PropTypes.string,
+//   url: PropTypes.string,
+//   count: PropTypes.number,
+//   price: PropTypes.number,
+// };
+
+// Home.propTypes = {
+//   productList: PropTypes.arrayOf(PropTypes.object(ProductList)).isRequired,
+// };

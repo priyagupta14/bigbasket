@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "./Counter.css";
 
 export default class Counter extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div class="product-counter">

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Counter from "../Counter/Counter";
 import "./Product.css";
-class Product extends Component {
+// import PropTypes from "prop-types";
+
+export default class Product extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,11 +16,22 @@ class Product extends Component {
         <p>MRP {this.props.product.price}/-</p>
         <Counter
           onIncrement={() => this.props.onIncrement(this.props.product.id)}
-          onDecrement={this.props.onDecrement}
+          onDecrement={() => this.props.onDecrement(this.props.product.id)}
           itemCount={this.props.product.count}
         />
       </div>
     );
   }
 }
-export default Product;
+
+// const ProductList = {
+//   id: PropTypes.number.isRequired,
+//   name: PropTypes.string,
+//   url: PropTypes.string,
+//   count: PropTypes.number,
+//   price: PropTypes.number,
+// };
+
+// Product.propTypes = {
+//   product: PropTypes.arrayOf(PropTypes.shape(ProductList)).isRequired,
+// };

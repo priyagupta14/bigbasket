@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: grey;
+  background-color: black;
+  padding: 2rem;
 }

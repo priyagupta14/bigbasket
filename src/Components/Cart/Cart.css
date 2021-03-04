@@ -1,0 +1,7 @@
+.cart-table {
+  display: flex;
+  justify-content: space-evenly;
+}
+th {
+  background-color: grey;
+}
