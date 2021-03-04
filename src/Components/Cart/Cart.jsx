@@ -17,7 +17,7 @@ export default class Cart extends Component {
       <div class="cart-div">
         <h1>Your Basket({totalCount} item(s))</h1>
         <table class="cart-table">
-          <tr>
+          <tr class="cart-table-header">
             <th>ITEM DESCRIPTION</th>
             <th>UNIT PRICE</th>
             <th>QUANTITY</th>
@@ -40,7 +40,7 @@ export default class Cart extends Component {
               CONTINUE SHOPPING
             </Link>
           </button>
-          <button class="checkout">
+          <p class="checkout">
             <h1>TOTAL Rs.{totalPrice}</h1>
             <hr />
             <button>
@@ -51,7 +51,7 @@ export default class Cart extends Component {
                 CHECKOUT
               </Link>
             </button>
-          </button>
+          </p>
         </div>
       </div>
     );
