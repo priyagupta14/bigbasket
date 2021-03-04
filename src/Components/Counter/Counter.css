@@ -1,8 +1,13 @@
 .product-counter {
   display: flex;
+  justify-content: space-between;
   background-color: rgb(197, 190, 190);
+  height: 3rem;
 }
 .product-counter > p {
   height: 1rem;
   width: 5rem;
+}
+.product-counter > button {
+  width: 2rem;
 }

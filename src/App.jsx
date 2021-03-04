@@ -11,14 +11,16 @@ export default class App extends Component {
         {
           id: 1,
           name: "banana",
-          url: "url",
+          url:
+            "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg",
           count: 0,
           price: 50,
         },
         {
           id: 2,
           name: "apple",
-          url: "url",
+          url:
+            "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg",
           count: 0,
           price: 30,
         },
@@ -28,21 +30,7 @@ export default class App extends Component {
   }
 
   onIncrement = (id) => {
-    console.log("Incrementing", 32);
-    // this.setState((prevState) => {
-    //   const newState = {
-    //     ...prevState,
-    //     cartCount: this.state.cartCount + 1,
-    //     products: this.state.products.map((eachProduct) => {
-    //       if (eachProduct.id === id) {
-    //         return { ...eachProduct, count: eachProduct.count + 1 };
-    //       }
-    //       return eachProduct;
-    //     }),
-    //   };
-    //   return { products: newState.products };
-    // });
-
+    console.log("Incrementing", id);
     const newState = {
       ...this.state,
       cartCount: this.state.cartCount + 1,
@@ -53,12 +41,11 @@ export default class App extends Component {
         return eachProduct;
       }),
     };
-    console.log(42, newState);
-    console.log(43, this.state.products);
-    this.setState(newState);
+    console.log(42, newState); //count is getting updated
+    this.setState(newState, () => console.log(59, this.state));
   };
-  onDecrement = () => {
-    console.log("Decrementing", 47);
+  onDecrement = (id) => {
+    console.log("Decrementing", id);
     const newState = {
       ...this.state,
       cartCount:
@@ -66,12 +53,13 @@ export default class App extends Component {
           ? this.state.cartCount - 1
           : this.state.cartCount,
       products: this.state.products.map((eachProduct) => {
-        if (eachProduct.id === 1 && eachProduct.count > 0) {
+        if (eachProduct.id === id && eachProduct.count > 0) {
           return { ...eachProduct, count: eachProduct.count - 1 };
         }
         return eachProduct;
       }),
     };
+    console.log(77, newState);
     this.setState(newState);
   };
 

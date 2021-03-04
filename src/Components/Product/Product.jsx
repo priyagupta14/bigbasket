@@ -9,8 +9,8 @@ class Product extends Component {
   render() {
     return (
       <div className="product-card-element">
+        <img src={this.props.product.url} alt="fruitItem" />
         <p>{this.props.product.name}</p>
-        <img src="{this.props.product.url}" alt="fruitItem" />
         <p>MRP {this.props.product.price}/-</p>
         <Counter
           onIncrement={() => this.props.onIncrement(this.props.product.id)}
