@@ -18,7 +18,7 @@ export default class App extends Component {
           url:
             "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg",
           count: 0,
-          price: "50",
+          price: 50,
         },
         {
           id: 2,
@@ -89,7 +89,7 @@ export default class App extends Component {
           <Switch>
             <Route path="/" exact>
               <Home
-                productList={this.state}
+                productList={this.state.products}
                 onIncrement={this.onIncrement}
                 onDecrement={this.onDecrement}
               />

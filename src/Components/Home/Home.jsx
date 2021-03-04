@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Product from "../Product/Product";
+import PropTypes from "prop-types";
 import "./Home.css";
 export default class Home extends Component {
   render() {
-    const allProducts = this.props.productList.products.map((eachProduct) => {
+    const allProducts = this.props.productList.map((eachProduct) => {
       return (
         <Product
           key={eachProduct.id}
@@ -21,6 +22,18 @@ export default class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  productList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      price: PropTypes.number,
+      count: PropTypes.number,
+      url: PropTypes.string,
+      name: PropTypes.string,
+    })
+  ),
+};
 
 // const ProductList = {
 //   id: PropTypes.number,
