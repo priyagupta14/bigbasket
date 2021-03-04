@@ -26,23 +26,11 @@ export default class Home extends Component {
 Home.propTypes = {
   productList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      price: PropTypes.number,
-      count: PropTypes.number,
-      url: PropTypes.string,
-      name: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
+      count: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
   ),
 };
-
-// const ProductList = {
-//   id: PropTypes.number,
-//   name: PropTypes.string,
-//   url: PropTypes.string,
-//   count: PropTypes.number,
-//   price: PropTypes.number,
-// };
-
-// Home.propTypes = {
-//   productList: PropTypes.arrayOf(PropTypes.object(ProductList)).isRequired,
-// };
