@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+/* @media screen and (max-width: 24rem) {
+  .section {
+    /* flex-direction: column; */
+/* }
+} */

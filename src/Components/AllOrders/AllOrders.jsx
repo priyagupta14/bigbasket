@@ -4,7 +4,7 @@ export default class AllOrders extends Component {
   render() {
     return (
       <div>
-        <h1>Your Basket(2 items)</h1>
+        <h1>Past Orders</h1>
       </div>
     );
   }

@@ -1,22 +1,29 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import "./Cart.css";
 export default class Cart extends Component {
   render() {
     const { productList } = this.props;
-    // const totalAmount = productList.forEach((product) => {
-    //   product.count * product.price;
-    // });
-    // console.log(9, totalAmount);
+    const totalPrice = productList.reduce(
+      (acc, curVal) => acc + curVal.count * curVal.price,
+      0
+    );
+    const totalCount = productList.reduce(
+      (acc, curVal) => acc + curVal.count,
+      0
+    );
     return (
-      <div class="cart-table">
-        <table>
+      <div class="cart-div">
+        <h1>Your Basket({totalCount} item(s))</h1>
+        <table class="cart-table">
           <tr>
             <th>ITEM DESCRIPTION</th>
             <th>UNIT PRICE</th>
             <th>QUANTITY</th>
             <th>SUBTOTAL</th>
           </tr>
-          <tr>Fruits&Vegatables</tr>
+          <tr class="title">Fruits&Vegatables</tr>
           {productList.map((eachItem) => (
             <tr>
               <td>{eachItem.name}</td>
@@ -25,8 +32,27 @@ export default class Cart extends Component {
               <td>{eachItem.price * eachItem.count}</td>
             </tr>
           ))}
-          <tr>Dairy Products</tr>
+          <tr class="title">Dairy Products</tr>
         </table>
+        <div className="cart-button">
+          <button>
+            <Link style={{ textDecoration: "none", color: "black" }} to="/">
+              CONTINUE SHOPPING
+            </Link>
+          </button>
+          <button class="checkout">
+            <h1>TOTAL Rs.{totalPrice}</h1>
+            <hr />
+            <button>
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/checkout"
+              >
+                CHECKOUT
+              </Link>
+            </button>
+          </button>
+        </div>
       </div>
     );
   }

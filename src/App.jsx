@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cart from "./Components/Cart/Cart";
 import AllOrders from "./Components/AllOrders/AllOrders";
+import Checkout from "./Components/Checkout/Checkout";
 
 export default class App extends Component {
   constructor() {
@@ -98,6 +99,9 @@ export default class App extends Component {
             </Route>
             <Route path="/allOrders">
               <AllOrders />
+            </Route>
+            <Route path="/checkout">
+              <Checkout />
             </Route>
           </Switch>
         </BrowserRouter>

@@ -8,12 +8,14 @@ export default class NavBar extends Component {
     return (
       <div class="navbar">
         <Link style={{ textDecoration: "none", color: "white" }} to="/">
+          <br />
           E-Shopper
         </Link>
         <Link
           style={{ textDecoration: "none", color: "white" }}
           to="/allOrders"
         >
+          <br />
           All Orders
         </Link>
         <Link style={{ textDecoration: "none", color: "white" }} to="/cart">
