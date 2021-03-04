@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+
 import "./Counter.css";
 
 export default function Counter(props) {
@@ -10,3 +12,9 @@ export default function Counter(props) {
     </div>
   );
 }
+
+Counter.propTypes = {
+  itemCount: PropTypes.number.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+};
