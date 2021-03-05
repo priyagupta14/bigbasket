@@ -1,11 +1,11 @@
-import "./App.css";
-import Home from "./Components/Home/Home";
-import NavBar from "./Components/NavBar/NavBar";
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Cart from "./Components/Cart/Cart";
-import AllOrders from "./Components/AllOrders/AllOrders";
-import Checkout from "./Components/Checkout/Checkout";
+import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Components/Home/Home';
+import NavBar from './Components/NavBar/NavBar';
+import Cart from './Components/Cart/Cart';
+import AllOrders from './Components/AllOrders/AllOrders';
+import Checkout from './Components/Checkout/Checkout';
 
 export default class App extends Component {
   constructor() {
@@ -14,25 +14,25 @@ export default class App extends Component {
       products: [
         {
           id: 1,
-          name: "banana",
+          name: 'banana',
           url:
-            "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg",
+            'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
           count: 0,
           price: 50,
         },
         {
           id: 2,
-          name: "apple",
+          name: 'apple',
           url:
-            "https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1",
+            'https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1',
           count: 0,
           price: 30,
         },
         {
           id: 3,
-          name: "apple",
+          name: 'apple',
           url:
-            "https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg",
+            'https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg',
           count: 0,
           price: 30,
         },
@@ -43,7 +43,7 @@ export default class App extends Component {
   }
 
   onIncrement = (id) => {
-    console.log("Incrementing", id);
+    console.log('Incrementing', id);
     let newState = {
       ...this.state,
       cartCount: this.state.cartCount + 1,
@@ -57,14 +57,15 @@ export default class App extends Component {
     newState = {
       ...newState,
       cartItems: newState.products.filter(
-        (eachProduct) => eachProduct.count > 0
+        (eachProduct) => eachProduct.count > 0,
       ),
     };
 
     this.setState(newState, () => console.log(45, this.state));
   };
+
   onDecrement = (id) => {
-    console.log("Decrementing", id);
+    console.log('Decrementing', id);
     const newState = {
       ...this.state,
       cartCount:

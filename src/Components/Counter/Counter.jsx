@@ -1,13 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+/* eslint-disable react/button-has-type */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./Counter.css";
+import './Counter.css';
 
 export default function Counter(props) {
   return (
-    <div class="product-counter">
+    <div className="product-counter">
       <button onClick={props.onIncrement}>+</button>
-      <p>{props.itemCount} in basket</p>
+      <p>
+        {props.itemCount}
+        {' '}
+        in basket
+      </p>
       <button onClick={props.onDecrement}>-</button>
     </div>
   );
