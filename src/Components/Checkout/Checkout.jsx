@@ -48,6 +48,8 @@ export default class Checkout extends Component {
     const validity = this.state.formValidity;
     const isEmail = name === 'email';
     const isPhoneNo = name === 'phoneNo';
+    const isAddress = name === 'address';
+    const isName = name === 'name';
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     validity[name] = value.length > 0;
     fieldValidationErrors[name] = validity[name] ? '' : `${name} is required`;
@@ -60,6 +62,14 @@ export default class Checkout extends Component {
         validity[name] = value.length === 10;
         fieldValidationErrors[name] = validity[name] ? '' : `${name} should be an valid`;
       }
+      if (isAddress) {
+        validity[name] = value.length > 10;
+        fieldValidationErrors[name] = validity[name] ? '' : `${name} should be longer than 10 characters`;
+      }
+      if (isName) {
+        validity[name] = value.length > 5;
+        fieldValidationErrors[name] = validity[name] ? '' : `${name} too short`;
+      }
     }
     this.setState({
       formErrors: fieldValidationErrors,
@@ -70,13 +80,13 @@ export default class Checkout extends Component {
   render() {
     const { formValues, formValidity, formErrors } = this.state;
     return (
-      <div className="checkout-form">
-        <form>
+      <div>
+        <form className="checkout-form">
           <p>Name:</p>
-          <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
+          <input type="text" name="name" placeholder="enter name" onChange={this.handleChange} value={this.state.name} />
           <div className="invalid-feedback">{formErrors.name}</div>
           <p>Address:</p>
-          <input type="text" name="address" onChange={this.handleChange} value={this.state.address} />
+          <input type="text" name="address" placeholder="enter address" onChange={this.handleChange} value={this.state.address} />
           <div className="invalid-feedback">{formErrors.address}</div>
           <p>Phone no:</p>
           <input type="number" name="phoneNo" placeholder="enter phone no" onChange={this.handleChange} value={this.state.phoneNo} />
@@ -84,6 +94,7 @@ export default class Checkout extends Component {
           <p>email:</p>
           <input type="email" name="email" placeholder="enter email" onChange={this.handleChange} value={formValues.email} />
           <div className="invalid-feedback">{formErrors.email}</div>
+          <br />
           <input type="submit" value="Submit" />
         </form>
       </div>

@@ -1,8 +1,18 @@
-.checkout-forms{
+.checkout-form{
     display: flex;
-    border: solid balck 1px;
-    margin: auto;
+    flex-direction: column;
+    align-content: center;
+    margin: 15px 10rem;
+    padding: 2rem;
 }
-div{
-    border: solid balck 1px;
-}
+@media screen and (max-width: 50rem) {
+    .checkout-form{
+      margin: auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    .checkout-form>input{
+        align-items: center;
+    }
+  }

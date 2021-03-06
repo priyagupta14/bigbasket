@@ -39,6 +39,28 @@ export default class App extends Component {
       ],
       cartCount: 0,
       cartItems: [],
+      pastOrder: {
+        list: [
+          {
+            id: 1,
+            name: 'banana',
+            count: 0,
+            price: 50,
+          },
+          {
+            id: 2,
+            name: 'apple',
+            count: 0,
+            price: 30,
+          },
+          {
+            id: 3,
+            name: 'apple',
+            count: 0,
+            price: 30,
+          },
+        ],
+      },
     };
   }
 
@@ -68,10 +90,10 @@ export default class App extends Component {
     console.log('Decrementing', id);
     const newState = {
       ...this.state,
-      cartCount:
-        this.state.cartCount > 0
-          ? this.state.cartCount - 1
-          : this.state.cartCount,
+      cartCount: (this.state.products.find((eachProduct) => {
+        if (eachProduct.id === id) return eachProduct.count > 0;
+        return false;
+      })) ? this.state.cartCount - 1 : this.state.cartCount,
       products: this.state.products.map((eachProduct) => {
         if (eachProduct.id === id && eachProduct.count > 0) {
           return { ...eachProduct, count: eachProduct.count - 1 };

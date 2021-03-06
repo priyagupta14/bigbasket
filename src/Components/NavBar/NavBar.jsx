@@ -13,16 +13,18 @@ export default class NavBar extends Component {
           <br />
           E-Shopper
         </Link>
-        <Link
-          style={{ textDecoration: 'none', color: 'white' }}
-          to="/allOrders"
-        >
-          <br />
-          All Orders
-        </Link>
-        <Link style={{ textDecoration: 'none', color: 'white' }} to="/cart">
-          <MyBasket itemInCart={this.props.itemInCart} />
-        </Link>
+        <div className="left-side-navbar">
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            to="/allOrders"
+          >
+            <br />
+            All Orders
+          </Link>
+          <Link style={{ textDecoration: 'none', color: 'white' }} to="/cart">
+            <MyBasket itemInCart={this.props.itemInCart} />
+          </Link>
+        </div>
       </div>
     );
   }
