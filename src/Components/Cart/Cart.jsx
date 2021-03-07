@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Table from '../Table/Table';
 import './Cart.css';
 
 export default class Cart extends Component {
@@ -24,24 +24,7 @@ export default class Cart extends Component {
           {' '}
           item(s))
         </h1>
-        <table className="cart-table">
-          <tr className="cart-table-header">
-            <th>ITEM DESCRIPTION</th>
-            <th>UNIT PRICE</th>
-            <th>QUANTITY</th>
-            <th>SUBTOTAL</th>
-          </tr>
-          <tr className="title">Fruits&Vegatables</tr>
-          {productList.map((eachItem) => (
-            <tr>
-              <td>{eachItem.name}</td>
-              <td>{eachItem.price}</td>
-              <td>{eachItem.count}</td>
-              <td>{eachItem.price * eachItem.count}</td>
-            </tr>
-          ))}
-          <tr className="title">Dairy Products</tr>
-        </table>
+        <Table productList={productList} />
         <div className="cart-button">
           <button>
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/">

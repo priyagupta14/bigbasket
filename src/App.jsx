@@ -39,28 +39,47 @@ export default class App extends Component {
       ],
       cartCount: 0,
       cartItems: [],
-      pastOrder: {
-        list: [
-          {
-            id: 1,
-            name: 'banana',
-            count: 0,
-            price: 50,
-          },
-          {
-            id: 2,
-            name: 'apple',
-            count: 0,
-            price: 30,
-          },
-          {
-            id: 3,
-            name: 'apple',
-            count: 0,
-            price: 30,
-          },
-        ],
-      },
+      pastOrder: [
+        {
+          orderId: 1,
+          noOfItems: 3,
+          date: 'Sun 04 Mar 2018',
+          amount: 120,
+          items: [
+            {
+              id: 1,
+              name: 'Banana',
+              count: 0,
+              quantity: 1,
+              price: 40,
+            },
+            {
+              id: 2,
+              image: './assets/apple.png',
+              name: 'Apple',
+              count: 0,
+              quantity: 1,
+              price: 40,
+            },
+          ],
+        },
+        {
+          orderId: 2,
+          noOfItems: 2,
+          date: 'Sun 03 Mar 2018',
+          amount: 80,
+          items: [
+            {
+              id: 1,
+              image: './assets/banana.png',
+              name: 'Banana',
+              count: 0,
+              quantity: 1,
+              price: 40,
+            },
+          ],
+        },
+      ],
     };
   }
 
@@ -121,7 +140,7 @@ export default class App extends Component {
               <Cart productList={this.state.cartItems} />
             </Route>
             <Route path="/allOrders">
-              <AllOrders />
+              <AllOrders order={this.state.pastOrder} />
             </Route>
             <Route path="/checkout">
               <Checkout />

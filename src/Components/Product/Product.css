@@ -2,10 +2,15 @@
   border: solid black 1px;
   padding: 2rem;
   margin: 0.5rem;
-  box-shadow: 10px 10px 5px grey;
+  box-shadow: 10px 10px 5px rgb(143, 137, 137);
   border-radius: 25px;
 }
 .product-card-element > img {
   width: 10rem;
   height: 10rem;
+}
+.price-counter{
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: rgb(180, 175, 175);
 }
