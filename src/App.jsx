@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import './App.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import banana from './assets/images/banana.jpg';
 import Home from './Components/Home/Home';
@@ -7,149 +8,125 @@ import NavBar from './Components/NavBar/NavBar';
 import Cart from './Components/Cart/Cart';
 import AllOrders from './Components/AllOrders/AllOrders';
 import Checkout from './Components/Checkout/Checkout';
+// import HookCounter from './Components/HookCounter/HookCounter';
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      products: [
+export default function App() {
+  const [AllProduct, setProduct] = useState([
+    {
+      id: 1,
+      name: 'banana',
+      url: banana,
+      count: 0,
+      price: 50,
+      // category: 'fruits',
+    },
+    {
+      id: 2,
+      name: 'apple',
+      url:
+        'https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1',
+      count: 0,
+      price: 30,
+      // category: 'diary',
+    },
+    {
+      id: 3,
+      name: 'apple',
+      url:
+                  'https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg',
+      count: 0,
+      price: 30,
+    },
+  ]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartItem, setCartItem] = useState([]);
+  const [pastOrder, setPastOrder] = useState([
+    {
+      orderId: 1,
+      noOfItems: 3,
+      date: 'Sun 04 Mar 2018',
+      amount: 120,
+      items: [
         {
           id: 1,
-          name: 'banana',
-          url: banana,
+          name: 'Banana',
           count: 0,
-          price: 50,
-          // category: 'fruits',
+          quantity: 1,
+          price: 40,
         },
         {
           id: 2,
-          name: 'apple',
-          url:
-            'https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1',
+          image: './assets/apple.png',
+          name: 'Apple',
           count: 0,
-          price: 30,
-          // category: 'diary',
-        },
-        {
-          id: 3,
-          name: 'apple',
-          url:
-            'https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg',
-          count: 0,
-          price: 30,
+          quantity: 1,
+          price: 40,
         },
       ],
-      cartCount: 0,
-      cartItems: [],
-      pastOrder: [
+    },
+    {
+      orderId: 2,
+      noOfItems: 2,
+      date: 'Sun 03 Mar 2018',
+      amount: 80,
+      items: [
         {
-          orderId: 1,
-          noOfItems: 3,
-          date: 'Sun 04 Mar 2018',
-          amount: 120,
-          items: [
-            {
-              id: 1,
-              name: 'Banana',
-              count: 0,
-              quantity: 1,
-              price: 40,
-            },
-            {
-              id: 2,
-              image: './assets/apple.png',
-              name: 'Apple',
-              count: 0,
-              quantity: 1,
-              price: 40,
-            },
-          ],
-        },
-        {
-          orderId: 2,
-          noOfItems: 2,
-          date: 'Sun 03 Mar 2018',
-          amount: 80,
-          items: [
-            {
-              id: 1,
-              image: './assets/banana.png',
-              name: 'Banana',
-              count: 0,
-              quantity: 1,
-              price: 40,
-            },
-          ],
+          id: 1,
+          image: './assets/banana.png',
+          name: 'Banana',
+          count: 0,
+          quantity: 1,
+          price: 40,
         },
       ],
-    };
-  }
-
-  onIncrement = (id) => {
-    console.log('Incrementing', id);
-    let newState = {
-      ...this.state,
-      cartCount: this.state.cartCount + 1,
-      products: this.state.products.map((eachProduct) => {
-        if (eachProduct.id === id) {
-          return { ...eachProduct, count: eachProduct.count + 1 };
-        }
-        return eachProduct;
-      }),
-    };
-    newState = {
-      ...newState,
-      cartItems: newState.products.filter(
-        (eachProduct) => eachProduct.count > 0,
-      ),
-    };
-
-    this.setState(newState, () => console.log(45, this.state));
+    },
+  ]);
+  const onDecrement = (id) => {
+    const newProduct = AllProduct.map((product) => (product.id === id ? {
+      ...product,
+      count: product.count - 1,
+    } : product));
+    setProduct(newProduct);
+    // const newCount = newProduct.find(
+    //   (product) => ((product.id === id && product.count > 0) ? cartCount + 1 : cartCount),
+    // );
+    setCartCount(cartCount - 1);
+    const newCartItem = newProduct.filter((product) => product.count > 0);
+    setCartItem(newCartItem);
   };
-
-  onDecrement = (id) => {
-    console.log('Decrementing', id);
-    const newState = {
-      ...this.state,
-      cartCount: (this.state.products.find((eachProduct) => {
-        if (eachProduct.id === id) return eachProduct.count > 0;
-        return false;
-      })) ? this.state.cartCount - 1 : this.state.cartCount,
-      products: this.state.products.map((eachProduct) => {
-        if (eachProduct.id === id && eachProduct.count > 0) {
-          return { ...eachProduct, count: eachProduct.count - 1 };
-        }
-        return eachProduct;
-      }),
-    };
-    this.setState(newState);
+  const onIncrement = (id) => {
+    const newProduct = AllProduct.map((product) => (product.id === id ? {
+      ...product,
+      count: product.count + 1,
+    } : product));
+    setProduct(newProduct);
+    setCartCount(cartCount + 1);
+    const newCartItem = newProduct.filter((product) => product.count > 0);
+    setCartItem(newCartItem);
   };
-
-  render() {
-    return (
-      <div>
-        <BrowserRouter>
-          <NavBar itemInCart={this.state.cartCount} />
-          <Switch>
-            <Route path="/" exact>
-              <Home
-                productList={this.state.products}
-                onIncrement={this.onIncrement}
-                onDecrement={this.onDecrement}
-              />
-            </Route>
-            <Route path="/cart">
-              <Cart productList={this.state.cartItems} />
-            </Route>
-            <Route path="/allOrders">
-              <AllOrders order={this.state.pastOrder} />
-            </Route>
-            <Route path="/checkout">
-              <Checkout />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <BrowserRouter>
+        <NavBar itemInCart={cartCount} />
+        <Switch>
+          <Route path="/" exact>
+            <Home
+              productList={AllProduct}
+              onIncrement={onIncrement}
+              onDecrement={onDecrement}
+            />
+          </Route>
+          <Route path="/cart">
+            <Cart productList={cartItem} />
+          </Route>
+          <Route path="/allOrders">
+            <AllOrders order={pastOrder} />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
