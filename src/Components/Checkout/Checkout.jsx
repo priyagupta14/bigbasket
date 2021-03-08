@@ -1,103 +1,69 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import './Checkout.css';
+import {
+  useFormik, Formik, Form, Field, ErrorMessage,
+} from 'formik';
+
+import * as yup from 'yup';
 
 export default class Checkout extends Component {
-  constructor() {
-    super();
-    this.state = {
-      formValues: {
-        name: '',
-        address: '',
-        phoneNo: '',
-        email: '',
-      },
-      formErrors: {
-        name: '',
-        address: '',
-        phoneNo: '',
-        email: '',
-      },
-      formValidity: {
-        name: false,
-        address: false,
-        phoneNo: false,
-        email: false,
-      },
-      // isSubmitting: false,
-    };
-  }
-
-  // handleChange=(event) => {
-  //   if (event.target.name === 'name' &&
-  //  event.target.value.length > 6) { console.log(event.target.value); }
-  //   this.setState(({ [event.target.name]: event.target.value }));
-  // }
-
-  handleChange=({ target }) => {
-    const { formValues } = this.state;
-    formValues[target.name] = target.value;
-    this.setState({ formValues });
-    this.handleValidation(target);
-  }
-
-  handleValidation= (target) => {
-    const { name, value } = target;
-    const fieldValidationErrors = this.state.formErrors;
-    const validity = this.state.formValidity;
-    const isEmail = name === 'email';
-    const isPhoneNo = name === 'phoneNo';
-    const isAddress = name === 'address';
-    const isName = name === 'name';
-    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    validity[name] = value.length > 0;
-    fieldValidationErrors[name] = validity[name] ? '' : `${name} is required`;
-    if (validity[name]) {
-      if (isEmail) {
-        validity[name] = emailTest.test(value);
-        fieldValidationErrors[name] = validity[name] ? '' : `${name} should be an valid`;
-      }
-      if (isPhoneNo) {
-        validity[name] = value.length === 10;
-        fieldValidationErrors[name] = validity[name] ? '' : `${name} should be an valid`;
-      }
-      if (isAddress) {
-        validity[name] = value.length > 10;
-        fieldValidationErrors[name] = validity[name] ? '' : `${name} should be longer than 10 characters`;
-      }
-      if (isName) {
-        validity[name] = value.length > 5;
-        fieldValidationErrors[name] = validity[name] ? '' : `${name} too short`;
-      }
-    }
-    this.setState({
-      formErrors: fieldValidationErrors,
-      formValidity: validity,
-    });
-  }
-
   render() {
-    const { formValues, formValidity, formErrors } = this.state;
     return (
-      <div>
-        <form className="checkout-form">
-          <p>Name:</p>
-          <input type="text" name="name" placeholder="enter name" onChange={this.handleChange} value={this.state.name} />
-          <div className="invalid-feedback">{formErrors.name}</div>
-          <p>Address:</p>
-          <input type="text" name="address" placeholder="enter address" onChange={this.handleChange} value={this.state.address} />
-          <div className="invalid-feedback">{formErrors.address}</div>
-          <p>Phone no:</p>
-          <input type="number" name="phoneNo" placeholder="enter phone no" onChange={this.handleChange} value={this.state.phoneNo} />
-          <div className="invalid-feedback">{formErrors.phoneNo}</div>
-          <p>email:</p>
-          <input type="email" name="email" placeholder="enter email" onChange={this.handleChange} value={formValues.email} />
-          <div className="invalid-feedback">{formErrors.email}</div>
-          <br />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <Formik
+        initialValues={{
+          Name: '',
+          Address: '',
+          PhoneNo: '',
+          Email: '',
+        }}
+        validationSchema={yup.object({
+          Name: yup.string().max(20, 'Name should not exceed 20 Characters')
+            .required('Please Enter Name'),
+          Address: yup.string()
+            .required('Please Enter Address'),
+          Email: yup.string()
+            .email('Invalid email address')
+            .required('Please Enter Email'),
+        })}
+        onSubmit={() => {
+          alert(JSON.stringify('Thank you for Shopping'));
+        }}
+      >
+        {(props) => (
+          <div className="checkout-form">
+            <h2>Enter Details...</h2>
+            <Form>
+              <p>
+                <label htmlFor="Name">  Name </label>
+                <Field name="Name" type="text" />
+                <ErrorMessage name="Name" />
+              </p>
+              <p>
+                <label htmlFor="Address">  Address </label>
+                <Field name="Address" type="text" />
+                <ErrorMessage name="Address" />
+              </p>
+              <p>
+                <label htmlFor="PhoneNo">  Phone no. </label>
+                <Field name="PhoneNo" type="number" />
+              </p>
+              <p>
+                <label htmlFor="Email">  Email</label>
+                <Field name="Email" type="text" />
+                <ErrorMessage name="Email" />
+              </p>
+              <button type="submit" disabled={props.isValid === false}>Submit</button>
+
+            </Form>
+
+          </div>
+
+        )}
+
+      </Formik>
 
     );
   }

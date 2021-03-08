@@ -1,9 +1,14 @@
-.checkout-form{
+.checkout-form>Form{
     display: flex;
     flex-direction: column;
-    align-content: center;
     margin: 15px 10rem;
-    padding: 2rem;
+}
+ 
+p>label{
+  display: flex;
+}
+Form>button{
+  margin: 15px 10rem;
 }
 @media screen and (max-width: 50rem) {
     .checkout-form{

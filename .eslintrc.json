@@ -46,10 +46,11 @@
         "react"
     ],
     "rules": {
-        // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
         "react/jsx-filename-extension": 0,
         "react/destructuring-assignment": [0, "always", { "ignoreClassFields": true }]
+        // "quotes": [2, "single", { "avoidEscape": true }]
     },
     "parser": "babel-eslint"
 }

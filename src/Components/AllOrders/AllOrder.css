@@ -1,0 +1,19 @@
+.cart-table-header {
+  text-align: left;
+}
+
+.item-value {
+  text-align: left;
+}
+
+.cart-table-header > th {
+  width: 25%;
+}
+
+.item-value > td {
+  width: 25%;
+}
+
+.title {
+  text-align: left;
+}

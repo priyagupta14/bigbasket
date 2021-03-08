@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import banana from './assets/images/banana.jpg';
 import Home from './Components/Home/Home';
 import NavBar from './Components/NavBar/NavBar';
 import Cart from './Components/Cart/Cart';
@@ -15,10 +16,10 @@ export default class App extends Component {
         {
           id: 1,
           name: 'banana',
-          url:
-            'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
+          url: banana,
           count: 0,
           price: 50,
+          // category: 'fruits',
         },
         {
           id: 2,
@@ -27,6 +28,7 @@ export default class App extends Component {
             'https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1',
           count: 0,
           price: 30,
+          // category: 'diary',
         },
         {
           id: 3,

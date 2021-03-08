@@ -16,7 +16,7 @@ export default class Table extends Component {
           </tr>
           <tr className="title">Fruits&Vegatables</tr>
           {productList.map((eachItem) => (
-            <tr>
+            <tr className="item-value">
               <td>{eachItem.name}</td>
               <td>{eachItem.price}</td>
               <td>{eachItem.count}</td>

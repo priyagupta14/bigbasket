@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import Table from '../Table/Table';
+import './AllOrder.css';
 
 export default class AllOrders extends Component {
   render() {
@@ -18,7 +19,7 @@ export default class AllOrders extends Component {
                 <th>Date</th>
                 <th>Amount</th>
               </tr>
-              <tr>
+              <tr className="item-value">
                 <td>{eachOrder.orderId}</td>
                 <td>{eachOrder.noOfItems}</td>
                 <td>{eachOrder.date}</td>
@@ -28,7 +29,6 @@ export default class AllOrders extends Component {
             <Table productList={eachOrder.items} />
           </>
         ))}
-
       </div>
     );
   }
