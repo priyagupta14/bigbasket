@@ -9,10 +9,10 @@ export default class Table extends Component {
       <div>
         <table className="cart-table">
           <tr className="cart-table-header">
-            <th>ITEM DESCRIPTION</th>
-            <th>UNIT PRICE</th>
-            <th>QUANTITY</th>
-            <th>SUBTOTAL</th>
+            <thead>ITEM DESCRIPTION</thead>
+            <thead>UNIT PRICE</thead>
+            <thead>QUANTITY</thead>
+            <thead>SUBTOTAL</thead>
           </tr>
           <tr className="title">Fruits&Vegatables</tr>
           {productList.map((eachItem) => (

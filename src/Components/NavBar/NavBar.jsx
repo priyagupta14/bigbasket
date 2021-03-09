@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable import/order */
 import React, { useContext } from 'react';
-import MyBasket from '../MyBasket/MyBasket';
 import './NavBar.css';
-import { ThemeContext } from '../../ThemeContext';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../ThemeContext';
+import MyBasket from '../MyBasket/MyBasket';
 
 const NavBar = (props) => {
   const theme = useContext(ThemeContext);
@@ -23,6 +22,7 @@ const NavBar = (props) => {
           All Orders
         </Link>
         <Link style={{ textDecoration: 'none', color: 'white' }} to="/cart">
+          <p>MyBasket</p>
           <MyBasket itemInCart={props.itemInCart} />
         </Link>
       </div>

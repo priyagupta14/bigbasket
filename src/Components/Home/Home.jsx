@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/require-default-props */
+/* eslint-disable react/prop-types */ // how to add validation for onIncrement?
 import React from 'react';
 import PropTypes from 'prop-types';
 import Product from '../Product/Product';
@@ -31,6 +30,6 @@ Home.propTypes = {
       url: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
 };
 export default Home;

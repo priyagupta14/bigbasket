@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import './Checkout.css';
 import {

@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Counter from '../Counter/Counter';
 import './Product.scss';
-// import PropTypes from "prop-types";
 
 const Product = (props) => (
   <div className="product-card-element">
@@ -22,4 +21,19 @@ const Product = (props) => (
     </div>
   </div>
 );
+
+Product.propTypes = {
+  product: PropTypes.arrayOf(
+    PropTypes.shape({
+      price: PropTypes.number.isRequired,
+      count: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+Product.propTypes = {
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+};
 export default Product;

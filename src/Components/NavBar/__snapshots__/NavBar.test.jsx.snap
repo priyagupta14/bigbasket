@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar should match default theme snapshot 1`] = `
+<div>
+  <div
+    class="light-navbar"
+  >
+    <a
+      href="/"
+      style="text-decoration: none; color: white;"
+    >
+      <br />
+      E-Shopper
+    </a>
+    <div
+      class="left-side-navbar"
+    >
+      <a
+        href="/allOrders"
+        style="text-decoration: none; color: white;"
+      >
+        <br />
+        All Orders
+      </a>
+      <a
+        href="/cart"
+        style="text-decoration: none; color: white;"
+      >
+        <p>
+          MyBasket
+        </p>
+        <div
+          class="mybasket-container"
+        >
+          <p>
+            mycart
+            0
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NavBar should match light theme snapshot 1`] = `
+<div>
+  <div
+    class="dark-navbar"
+  >
+    <a
+      href="/"
+      style="text-decoration: none; color: white;"
+    >
+      <br />
+      E-Shopper
+    </a>
+    <div
+      class="left-side-navbar"
+    >
+      <a
+        href="/allOrders"
+        style="text-decoration: none; color: white;"
+      >
+        <br />
+        All Orders
+      </a>
+      <a
+        href="/cart"
+        style="text-decoration: none; color: white;"
+      >
+        <p>
+          MyBasket
+        </p>
+        <div
+          class="mybasket-container"
+        >
+          <p>
+            mycart
+            0
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;

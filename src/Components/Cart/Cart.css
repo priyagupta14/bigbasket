@@ -4,7 +4,7 @@
   justify-content: space-evenly;
   margin: 2rem;
 }
-.cart-table > tr > th {
+.cart-table > tr > thead {
   color: white;
 }
 .cart-table > tr {

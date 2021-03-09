@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -21,7 +20,7 @@ const Cart = (props) => {
       </h1>
       <Table productList={productList} />
       <div className="cart-button">
-        <button>
+        <button type="button">
           <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
             CONTINUE SHOPPING
           </Link>
@@ -32,7 +31,7 @@ const Cart = (props) => {
             {totalPrice}
           </h1>
           <hr />
-          <button>
+          <button type="button">
             <Link
               style={{ textDecoration: 'none', color: 'black' }}
               to="/checkout"

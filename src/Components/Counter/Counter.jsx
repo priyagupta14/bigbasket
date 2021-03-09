@@ -1,23 +1,18 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Counter.scss';
 
-const Counter = (props) => {
-  const [productCount, setProductCount] = useState(props.itemCount);
-  return (
-    <div className={productCount === 0 ? 'zeroProduct' : 'moreProduct'}>
-      <button onClick={props.onIncrement}>        +      </button>
-      <p>
-        {props.itemCount}
-        {' '}
-        in basket
-      </p>
-      <button onClick={props.onDecrement}>-</button>
-    </div>
-  );
-};
+const Counter = (props) => (
+  <div className={props.itemCount === 0 ? 'zeroProduct' : 'moreProduct'}>
+    <button onClick={props.onIncrement} type="button">        +      </button>
+    <p>
+      {props.itemCount}
+      {' '}
+      in basket
+    </p>
+    <button onClick={props.onDecrement} type="button">-</button>
+  </div>
+);
 
 Counter.propTypes = {
   itemCount: PropTypes.number.isRequired,
