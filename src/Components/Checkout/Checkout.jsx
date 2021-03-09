@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import './Checkout.css';
 import {
-  useFormik, Formik, Form, Field, ErrorMessage,
+  Formik, Form, Field, ErrorMessage,
 } from 'formik';
 
 import * as yup from 'yup';
@@ -24,11 +24,14 @@ export default class Checkout extends Component {
             .required('Please Enter Name'),
           Address: yup.string()
             .required('Please Enter Address'),
+          PhoneNo: yup.string().max(10, 'not more than 10 numbers')
+            .required('Please Enter Phone no'),
           Email: yup.string()
             .email('Invalid email address')
             .required('Please Enter Email'),
         })}
-        onSubmit={() => {
+        onSubmit={(value) => {
+          console.log(value);
           alert(JSON.stringify('Thank you for Shopping'));
         }}
       >
@@ -49,6 +52,7 @@ export default class Checkout extends Component {
               <p>
                 <label htmlFor="PhoneNo">  Phone no. </label>
                 <Field name="PhoneNo" type="number" />
+                <ErrorMessage name="PhoneNo" />
               </p>
               <p>
                 <label htmlFor="Email">  Email</label>
@@ -56,15 +60,10 @@ export default class Checkout extends Component {
                 <ErrorMessage name="Email" />
               </p>
               <button type="submit" disabled={props.isValid === false}>Submit</button>
-
             </Form>
-
           </div>
-
         )}
-
       </Formik>
-
     );
   }
 }

@@ -1,7 +1,13 @@
-.navbar {
+.dark-navbar {
   display: flex;
   justify-content: space-between;
   background-color: black;
+  padding: 1rem;
+}
+.light-navbar{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(156, 151, 151);
   padding: 1rem;
 }
 .left-side-navbar{

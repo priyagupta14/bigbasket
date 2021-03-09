@@ -1,9 +1,10 @@
+@import '../../styles/index.scss';
 .product-card {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-@media screen and (max-width: 24rem) {
+@media screen and (max-width: $breakpoint-for-phone) {
   .product-card{
     margin: auto;
     display: flex;

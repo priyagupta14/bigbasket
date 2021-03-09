@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Cart from './Components/Cart/Cart';
 import AllOrders from './Components/AllOrders/AllOrders';
 import Checkout from './Components/Checkout/Checkout';
+import { ThemeContext } from './ThemeContext';
 // import HookCounter from './Components/HookCounter/HookCounter';
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
   ]);
   const [cartCount, setCartCount] = useState(0);
   const [cartItem, setCartItem] = useState([]);
+  const [theme, setTheme] = useState('light');
   const [pastOrder, setPastOrder] = useState([
     {
       orderId: 1,
@@ -84,16 +86,17 @@ export default function App() {
   const onDecrement = (id) => {
     const newProduct = AllProduct.map((product) => (product.id === id ? {
       ...product,
-      count: product.count - 1,
+      count: (product.count > 0) ? product.count - 1 : product.count,
     } : product));
     setProduct(newProduct);
-    // const newCount = newProduct.find(
-    //   (product) => ((product.id === id && product.count > 0) ? cartCount + 1 : cartCount),
-    // );
-    setCartCount(cartCount - 1);
+    const newCount = (AllProduct.find(
+      (product) => { if (product.id === id) return product.count > 0; return false; },
+    )) ? cartCount - 1 : cartCount;
+    setCartCount(newCount);
     const newCartItem = newProduct.filter((product) => product.count > 0);
     setCartItem(newCartItem);
   };
+
   const onIncrement = (id) => {
     const newProduct = AllProduct.map((product) => (product.id === id ? {
       ...product,
@@ -107,7 +110,12 @@ export default function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar itemInCart={cartCount} />
+        <ThemeContext.Provider value={theme}>
+          <NavBar itemInCart={cartCount} />
+        </ThemeContext.Provider>
+        <button type="button" className="toggle-button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+          ChangeTheme
+        </button>
         <Switch>
           <Route path="/" exact>
             <Home
@@ -126,6 +134,7 @@ export default function App() {
             <Checkout />
           </Route>
         </Switch>
+
       </BrowserRouter>
     </div>
   );

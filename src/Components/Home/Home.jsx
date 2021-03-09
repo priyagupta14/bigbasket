@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Product from '../Product/Product';
-import './Home.css';
+import './Home.scss';
 
 const Home = (props) => {
   const allProducts = props.productList.map((eachProduct) => (

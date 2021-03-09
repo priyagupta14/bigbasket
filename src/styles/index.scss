@@ -1,0 +1,8 @@
+$primary-background-color: rgb(116, 116, 116);
+$border-radius: 25px;
+//breakpoints
+$breakpoint-for-phone: 24rem;
+$breakpoint-for-table: 48rem;
+@mixin backgroundcolor-mixin{
+    background-color: rgb(146, 146, 141);
+}

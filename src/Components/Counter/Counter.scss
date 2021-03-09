@@ -1,0 +1,34 @@
+@import '../../styles/index.scss';
+
+.product-counter {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: $primary-background-color;
+  height: 3rem;
+}
+.zeroProduct{
+  background-color: rgb(148, 147, 147);
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: $primary-background-color;
+  height: 3rem;
+}
+.moreProduct{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: $primary-background-color;
+  height: 3rem;
+  background-color: rgb(211, 198, 123);
+}
+.product-counter > p {
+  height: 1rem;
+  width: 5rem;
+  
+}
+.product-counter > button {
+  width: 2rem;
+  height: auto;
+}

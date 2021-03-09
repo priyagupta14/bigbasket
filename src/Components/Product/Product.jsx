@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Counter from '../Counter/Counter';
-import './Product.css';
+import './Product.scss';
 // import PropTypes from "prop-types";
 
 const Product = (props) => (
