@@ -13,7 +13,7 @@ export default function HookCounter() {
         type="button"
         onClick={() => setCount(count + 2)}
       >
-        button
+        Increment Counter
       </button>
     </div>
   );

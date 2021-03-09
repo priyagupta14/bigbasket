@@ -6,8 +6,6 @@ import './Counter.scss';
 
 const Counter = (props) => {
   const [productCount, setProductCount] = useState(props.itemCount);
-  // useContext(ThemeButton);
-  // setProductCount();
   return (
     <div className={productCount === 0 ? 'zeroProduct' : 'moreProduct'}>
       <button onClick={props.onIncrement}>        +      </button>
