@@ -18,6 +18,15 @@
 .cart-table-header {
   background-color: rgba(29, 28, 28, 0.808);
 }
+
+.cart-table-header > thead {
+  width: 25%;
+}
+
+.item-value > td {
+  width: 25%;
+}
+
 .title {
   background-color: rgb(155, 155, 155);
 }

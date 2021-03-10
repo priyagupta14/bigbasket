@@ -3,7 +3,6 @@ import React from 'react';
 
 const Table = (props) => {
   const { productList } = props;
-
   return (
     <div>
       <table className="cart-table">
@@ -16,16 +15,21 @@ const Table = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr className="title"><td>Fruits&Vegatables</td></tr>
-          {productList.map((eachItem) => (
-            <tr className="item-value" key={eachItem.id}>
-              <td>{eachItem.name}</td>
-              <td>{eachItem.price}</td>
-              <td>{eachItem.inCartCount}</td>
-              <td>{eachItem.price * eachItem.inCartCount}</td>
-            </tr>
+          {Object.keys(productList).map((category) => (
+            <>
+              <tr className="title" key={category}><td>{category}</td></tr>
+              <>
+                {productList[category].map((product) => (
+                  <tr className="item-value">
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.inCartCount}</td>
+                    <td>{product.inCartCount * product.price}</td>
+                  </tr>
+                ))}
+              </>
+            </>
           ))}
-          <tr className="title"><td>Dairy Products</td></tr>
         </tbody>
       </table>
     </div>

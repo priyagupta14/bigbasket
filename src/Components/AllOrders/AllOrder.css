@@ -6,7 +6,7 @@
   text-align: left;
 }
 
-.cart-table-header > thead {
+.cart-table-header > th {
   width: 25%;
 }
 

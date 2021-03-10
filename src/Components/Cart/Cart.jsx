@@ -5,20 +5,22 @@ import Table from '../Table/Table';
 import './Cart.css';
 
 const Cart = (props) => {
-  const { productList } = props;
-  const totalPrice = productList.reduce(
-    (acc, curVal) => acc + curVal.inCartCount * curVal.price,
-    0,
-  );
-  const totalCount = productList.reduce((acc, curVal) => acc + curVal.inCartCount, 0);
+  const { productList, cartCount } = props;
+  // const totalPrice = productList.reduce(
+  //   (acc, curVal) => acc + curVal.inCartCount * curVal.price,
+  //   0,
+  // );
+  // const totalCount = productList.reduce((acc, curVal) => acc + curVal.inCartCount, 0);
   return (
     <div className="cart-div">
       <h1>
         Your Basket(
-        {totalCount}
+        {cartCount}
         item(s))
       </h1>
-      <Table productList={productList} />
+      <div>
+        <Table productList={productList} />
+      </div>
       <div className="cart-button">
         <button type="button">
           <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
@@ -28,7 +30,6 @@ const Cart = (props) => {
         <div className="checkout">
           <h1>
             TOTAL Rs.
-            {totalPrice}
           </h1>
           <hr />
           <button type="button">
