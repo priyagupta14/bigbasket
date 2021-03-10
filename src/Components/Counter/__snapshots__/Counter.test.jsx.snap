@@ -5,7 +5,9 @@ exports[`Counter should match snapshot 1`] = `
   <div
     class="zeroProduct"
   >
-    <button>
+    <button
+      type="button"
+    >
               +      
     </button>
     <p>
@@ -13,7 +15,9 @@ exports[`Counter should match snapshot 1`] = `
        
       in basket
     </p>
-    <button>
+    <button
+      type="button"
+    >
       -
     </button>
   </div>

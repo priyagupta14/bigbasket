@@ -4,6 +4,7 @@ import {
   fireEvent, render, screen,
 } from '@testing-library/react';
 import Product from './Product';
+import Counter from '../Counter/Counter';
 
 describe(Product.name, () => {
   const mockProps = {
@@ -29,10 +30,15 @@ describe(Product.name, () => {
     const { container } = render(<Product {...mockProps} />);
     expect(container).toMatchSnapshot();
   });
-  xit('should display product details', () => {
+  it('should display product details', () => {
     render(<Product {...mockProps} />);
     screen.getByText('banana');
-    screen.getByTestId('banana');
+    // screen.getByTestId('banana');
     screen.getByText('MRP50/-');
+    render(<Counter
+      itemCount={mockProps.product.id}
+      onDecrement={mockProps.onDecrement}
+      onIncrement={mockProps.onIncrement}
+    />);
   });
 });

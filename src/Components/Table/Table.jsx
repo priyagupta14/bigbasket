@@ -1,31 +1,34 @@
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Table extends Component {
-  render() {
-    const { productList } = this.props;
+const Table = (props) => {
+  const { productList } = props;
 
-    return (
-      <div>
-        <table className="cart-table">
+  return (
+    <div>
+      <table className="cart-table">
+        <thead>
           <tr className="cart-table-header">
-            <thead>ITEM DESCRIPTION</thead>
-            <thead>UNIT PRICE</thead>
-            <thead>QUANTITY</thead>
-            <thead>SUBTOTAL</thead>
+            <th>ITEM DESCRIPTION</th>
+            <th>UNIT PRICE</th>
+            <th>QUANTITY</th>
+            <th>SUBTOTAL</th>
           </tr>
-          <tr className="title">Fruits&Vegatables</tr>
+        </thead>
+        <tbody>
+          <tr className="title"><td>Fruits&Vegatables</td></tr>
           {productList.map((eachItem) => (
-            <tr className="item-value">
+            <tr className="item-value" key={eachItem.id}>
               <td>{eachItem.name}</td>
               <td>{eachItem.price}</td>
-              <td>{eachItem.count}</td>
-              <td>{eachItem.price * eachItem.count}</td>
+              <td>{eachItem.inCartCount}</td>
+              <td>{eachItem.price * eachItem.inCartCount}</td>
             </tr>
           ))}
-          <tr className="title">Dairy Products</tr>
-        </table>
-      </div>
-    );
-  }
-}
+          <tr className="title"><td>Dairy Products</td></tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+export default Table;

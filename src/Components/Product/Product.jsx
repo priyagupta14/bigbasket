@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from '../Counter/Counter';
@@ -14,9 +15,9 @@ const Product = (props) => (
         /-
       </p>
       <Counter
-        onIncrement={() => props.onIncrement(props.product.id)}
-        onDecrement={() => props.onDecrement(props.product.id)}
-        itemCount={props.product.count}
+        onIncrement={() => props.onIncrement(props.product.id, props.category)}
+        onDecrement={() => props.onDecrement(props.product.id, props.category)}
+        itemCount={props.product.inCartCount}
       />
     </div>
   </div>

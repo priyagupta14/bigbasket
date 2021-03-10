@@ -4,7 +4,7 @@ import {
 } from '@testing-library/react';
 import AllOrder from './AllOrders';
 
-xdescribe(AllOrder.name, () => {
+describe(AllOrder.name, () => {
   const mockProps = [
     {
       orderId: 1,

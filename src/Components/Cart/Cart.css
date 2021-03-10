@@ -4,10 +4,14 @@
   justify-content: space-evenly;
   margin: 2rem;
 }
-.cart-table > tr > thead {
+.cart-table > thead>tr > th {
   color: white;
 }
-.cart-table > tr {
+.cart-table > thead>tr {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-table > tbody>tr {
   display: flex;
   justify-content: space-between;
 }

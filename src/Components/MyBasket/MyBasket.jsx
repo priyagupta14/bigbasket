@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class MyBasket extends Component {
-  render() {
-    return (
-      <div className="mybasket-container">
-        <p>
-          mycart
-          {this.props.itemInCart}
-        </p>
-      </div>
-    );
-  }
-}
+const MyBasket = (props) => (
+  <div className="mybasket-container">
+    <p>
+      mycart
+      {props.itemInCart}
+    </p>
+  </div>
+);
+export default MyBasket;

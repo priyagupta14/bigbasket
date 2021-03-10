@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 import banana from './assets/images/banana.jpg';
+import setting from './assets/images/setting.png';
 import Home from './Components/Home/Home';
 import NavBar from './Components/NavBar/NavBar';
 import Cart from './Components/Cart/Cart';
@@ -12,36 +14,14 @@ import { ThemeContext } from './ThemeContext';
 // import HookCounter from './Components/HookCounter/HookCounter';
 
 export default function App() {
-  const [AllProduct, setProduct] = useState([
-    {
-      id: 1,
-      name: 'banana',
-      url: banana,
-      count: 0,
-      price: 50,
-      // category: 'fruits',
-    },
-    {
-      id: 2,
-      name: 'apple',
-      url:
-        'https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1',
-      count: 0,
-      price: 30,
-      // category: 'diary',
-    },
-    {
-      id: 3,
-      name: 'apple',
-      url:
-                  'https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg',
-      count: 0,
-      price: 30,
-    },
-  ]);
+  const [AllProduct, setProduct] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartItem, setCartItem] = useState([]);
   const [theme, setTheme] = useState('light');
+  const [categorized, setCategories] = useState({});
+
+  const [error1, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [pastOrder, setPastOrder] = useState([
     {
       orderId: 1,
@@ -83,30 +63,78 @@ export default function App() {
       ],
     },
   ]);
-  const onDecrement = (id) => {
-    const newProduct = AllProduct.map((product) => (product.id === id ? {
+
+  const groupByCategory = (items) => items.reduce((acc, product) => {
+    const { category } = product;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(product);
+    return acc;
+  }, {});
+
+  useEffect(async () => {
+    const { data, error } = await axios.get('/items');
+    const products = data.data;
+    if (products) setIsLoaded(true);
+    else { setError(error); setIsLoaded(true); }
+    const allProducts = products.map((eachProduct) => ({
+      ...eachProduct,
+      inCartCount: 0,
+      url: banana,
+    }));
+    const categorizedProduct = groupByCategory(allProducts);
+    setCategories(categorizedProduct);
+    setProduct(allProducts);
+  }, []);
+
+  const onDecrement = (id, category) => {
+    const newProduct = categorized[category].map((product) => (product.id === id ? {
       ...product,
-      count: (product.count > 0) ? product.count - 1 : product.count,
+      inCartCount: product.inCartCount > 0 ? product.inCartCount - 1 : product.inCartCount,
+      count: product.inCartCount > 0 ? product.count + 1 : product.count,
     } : product));
-    setProduct(newProduct);
-    const newCount = (AllProduct.find(
-      (product) => { if (product.id === id) return product.count > 0; return false; },
+    categorized[category] = newProduct;
+    setCategories(categorized);
+    const newCount = (categorized[category].find(
+      (product) => { if (product.id === id) return product.inCartCount > 0; return false; },
     )) ? cartCount - 1 : cartCount;
     setCartCount(newCount);
-    const newCartItem = newProduct.filter((product) => product.count > 0);
+    const newCartItem = categorized[category].filter((product) => product.inCartCount > 0);
     setCartItem(newCartItem);
   };
 
-  const onIncrement = (id) => {
-    const newProduct = AllProduct.map((product) => (product.id === id ? {
-      ...product,
-      count: product.count + 1,
-    } : product));
-    setProduct(newProduct);
-    setCartCount(cartCount + 1);
-    const newCartItem = newProduct.filter((product) => product.count > 0);
+  const onIncrement = (id, category) => {
+    const newProduct = categorized[category].map((eachProduct) => (
+      eachProduct.id === id ? {
+        ...eachProduct,
+        inCartCount: eachProduct.count > 0 ? eachProduct.inCartCount + 1 : eachProduct.inCartCount,
+        count: eachProduct.count > 0 ? eachProduct.count - 1 : eachProduct.count,
+      } : eachProduct
+    ));
+    categorized[category] = newProduct;
+    setCategories(categorized);
+
+    const newCount = (categorized[category].find(
+      (product) => {
+        if (product.id === id) return (product.count > 0 && product.inCartCount > 0); return false;
+      },
+    )) ? cartCount + 1 : cartCount;
+    setCartCount(newCount);
+    const newCartItem = categorized[category].filter((product) => product.inCartCount > 0);
     setCartItem(newCartItem);
   };
+
+  if (error1) {
+    return (
+      <div>error1.message</div>
+    );
+  }
+  if (!isLoaded) {
+    return (
+      <div>Loading...</div>
+    );
+  }
   return (
     <div>
       <BrowserRouter>
@@ -114,11 +142,12 @@ export default function App() {
           <NavBar itemInCart={cartCount} />
         </ThemeContext.Provider>
         <button type="button" className="toggle-button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          ChangeTheme
+          <img src={setting} alt="setting" />
         </button>
         <Switch>
           <Route path="/" exact>
             <Home
+              categorizedProduct={categorized}
               productList={AllProduct}
               onIncrement={onIncrement}
               onDecrement={onDecrement}
@@ -134,7 +163,6 @@ export default function App() {
             <Checkout />
           </Route>
         </Switch>
-
       </BrowserRouter>
     </div>
   );

@@ -7,8 +7,9 @@
   pointer-events: none;
 }
 .toggle-button {
-  display: block;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -41,6 +42,10 @@
 }
 * {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.toggle-button>img{
+  
+  width:2rem;
 }
 /* @media screen and (max-width: 24rem) {
   .section {

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart should match snapshot 1`] = `
+<div>
+  <div
+    class="cart-div"
+  >
+    <h1>
+      Your Basket(
+      0
+      item(s))
+    </h1>
+    <div>
+      <table
+        class="cart-table"
+      >
+        <thead>
+          <tr
+            class="cart-table-header"
+          >
+            <th>
+              ITEM DESCRIPTION
+            </th>
+            <th>
+              UNIT PRICE
+            </th>
+            <th>
+              QUANTITY
+            </th>
+            <th>
+              SUBTOTAL
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="title"
+          >
+            <td>
+              Fruits&Vegatables
+            </td>
+          </tr>
+          <tr
+            class="title"
+          >
+            <td>
+              Dairy Products
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="cart-button"
+    >
+      <button
+        type="button"
+      >
+        <a
+          href="/"
+          style="text-decoration: none; color: black;"
+        >
+          CONTINUE SHOPPING
+        </a>
+      </button>
+      <div
+        class="checkout"
+      >
+        <h1>
+          TOTAL Rs.
+          0
+        </h1>
+        <hr />
+        <button
+          type="button"
+        >
+          <a
+            href="/checkout"
+            style="text-decoration: none; color: black;"
+          >
+            CHECKOUT
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

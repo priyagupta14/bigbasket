@@ -1,35 +1,27 @@
 /* eslint-disable react/prop-types */ // how to add validation for onIncrement?
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Product from '../Product/Product';
 import './Home.scss';
 
-const Home = (props) => {
-  const allProducts = props.productList.map((eachProduct) => (
-    <Product
-      key={eachProduct.id}
-      product={eachProduct}
-      onIncrement={props.onIncrement}
-      onDecrement={props.onDecrement}
-    />
-  ));
-  return (
-    <div>
-      <h1> Fruits&Vegetables </h1>
-      <div className="product-card">{allProducts}</div>
-    </div>
-  );
-};
-
-Home.propTypes = {
-  productList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      count: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
+const Home = ({ categorizedProduct, onIncrement, onDecrement }) => (
+  <div>
+    {Object.keys(categorizedProduct).map((category) => (
+      <div key={category}>
+        <h1>{category}</h1>
+        <div className="product-card">
+          {categorizedProduct[category].map((product) => (
+            <Product
+              key={product.id}
+              category={category}
+              product={product}
+              onIncrement={onIncrement}
+              onDecrement={onDecrement}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
 export default Home;

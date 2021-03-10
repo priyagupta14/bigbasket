@@ -7,27 +7,30 @@ const AllOrders = (props) => {
   const { order } = props;
   return (
     <div>
-
       <h1>Past Orders</h1>
       <hr />
       {order.map((eachOrder) => (
-        <>
+        <div key={eachOrder.orderId}>
           <table className="cart-table">
-            <tr className="cart-table-header">
-              <thead>Order</thead>
-              <thead>Items</thead>
-              <thead>Date</thead>
-              <thead>Amount</thead>
-            </tr>
-            <tr className="item-value">
-              <td>{eachOrder.orderId}</td>
-              <td>{eachOrder.noOfItems}</td>
-              <td>{eachOrder.date}</td>
-              <td>{eachOrder.amount}</td>
-            </tr>
+            <thead>
+              <tr className="cart-table-header">
+                <th>Order</th>
+                <th>Items</th>
+                <th>Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="item-value">
+                <td>{eachOrder.orderId}</td>
+                <td>{eachOrder.noOfItems}</td>
+                <td>{eachOrder.date}</td>
+                <td>{eachOrder.amount}</td>
+              </tr>
+            </tbody>
           </table>
-          <Table key={eachOrder.id} productList={eachOrder.items} />
-        </>
+          <Table productList={eachOrder.items} />
+        </div>
       ))}
     </div>
   );

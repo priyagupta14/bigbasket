@@ -7,10 +7,10 @@ import './Cart.css';
 const Cart = (props) => {
   const { productList } = props;
   const totalPrice = productList.reduce(
-    (acc, curVal) => acc + curVal.count * curVal.price,
+    (acc, curVal) => acc + curVal.inCartCount * curVal.price,
     0,
   );
-  const totalCount = productList.reduce((acc, curVal) => acc + curVal.count, 0);
+  const totalCount = productList.reduce((acc, curVal) => acc + curVal.inCartCount, 0);
   return (
     <div className="cart-div">
       <h1>
@@ -25,7 +25,7 @@ const Cart = (props) => {
             CONTINUE SHOPPING
           </Link>
         </button>
-        <p className="checkout">
+        <div className="checkout">
           <h1>
             TOTAL Rs.
             {totalPrice}
@@ -39,7 +39,7 @@ const Cart = (props) => {
               CHECKOUT
             </Link>
           </button>
-        </p>
+        </div>
       </div>
     </div>
   );
