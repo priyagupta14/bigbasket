@@ -1,40 +1,28 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Table from '../Table/Table';
 import './AllOrder.css';
+// import Table from '../Table/Table';
 
-const AllOrders = (props) => {
-  const { order } = props;
-  return (
-    <div>
-      <h1>Past Orders</h1>
-      <hr />
-      {order.map((eachOrder) => (
-        <div key={eachOrder.orderId}>
-          <table className="cart-table">
-            <thead>
-              <tr className="cart-table-header">
-                <th>Order</th>
-                <th>Items</th>
-                <th>Date</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="item-value">
-                <td>{eachOrder.orderId}</td>
-                <td>{eachOrder.noOfItems}</td>
-                <td>{eachOrder.date}</td>
-                <td>{eachOrder.amount}</td>
-              </tr>
-            </tbody>
-          </table>
-          <Table productList={eachOrder.items} />
-        </div>
-      ))}
-    </div>
-  );
-};
+const AllOrders = () => (
+  <div>
+    <h1>Past Orders</h1>
+    <hr />
+    <table className="cart-table" border="1">
+      <thead>
+        <tr className="orders-table-header">
+          <th>Order</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>123</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+);
 export default AllOrders;
 // AllOrders.propTypes={
 

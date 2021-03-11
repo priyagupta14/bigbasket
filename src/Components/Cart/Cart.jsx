@@ -6,11 +6,16 @@ import './Cart.css';
 
 const Cart = (props) => {
   const { productList, cartCount } = props;
-  // const totalPrice = productList.reduce(
-  //   (acc, curVal) => acc + curVal.inCartCount * curVal.price,
-  //   0,
-  // );
-  // const totalCount = productList.reduce((acc, curVal) => acc + curVal.inCartCount, 0);
+
+  let totalPrice = Object.keys(productList).map((category) => (
+    productList[category].reduce(
+      (acc, curVal) => acc + curVal.inCartCount * curVal.price,
+      0,
+    )));
+  totalPrice = totalPrice.reduce(
+    (acc, curVal) => acc + curVal,
+    0,
+  );
   return (
     <div className="cart-div">
       <h1>
@@ -28,9 +33,16 @@ const Cart = (props) => {
           </Link>
         </button>
         <div className="checkout">
-          <h1>
-            TOTAL Rs.
-          </h1>
+          <div>
+            <p>
+              TOTAL
+            </p>
+            <p>
+              Rs.
+              {totalPrice}
+            </p>
+          </div>
+
           <hr />
           <button type="button">
             <Link

@@ -14,23 +14,21 @@ const Table = (props) => {
             <th>SUBTOTAL</th>
           </tr>
         </thead>
-        <tbody>
-          {Object.keys(productList).map((category) => (
-            <>
-              <tr className="title" key={category}><td>{category}</td></tr>
-              <>
-                {productList[category].map((product) => (
-                  <tr className="item-value">
-                    <td>{product.name}</td>
-                    <td>{product.price}</td>
-                    <td>{product.inCartCount}</td>
-                    <td>{product.inCartCount * product.price}</td>
-                  </tr>
-                ))}
-              </>
-            </>
-          ))}
-        </tbody>
+
+        {Object.keys(productList).map((category) => (
+          <tbody>
+            <tr className="title"><td>{category}</td></tr>
+            {productList[category].map((product) => (
+              <tr className="item-value">
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>{product.inCartCount}</td>
+                <td>{product.inCartCount * product.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
+
       </table>
     </div>
   );

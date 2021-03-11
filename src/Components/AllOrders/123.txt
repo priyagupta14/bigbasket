@@ -1,0 +1,9 @@
+{order.map((eachOrder) => (
+            <>
+              <tr className="order-value" key={eachOrder.id}>
+                <td>{eachOrder.id}</td>
+                <td>{new Date(eachOrder.date).toString()}</td>
+              </tr>
+              <Table key={eachOrder.id} productList={groupByCategory(eachOrder.items)} />
+            </>
+          ))}

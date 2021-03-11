@@ -19,7 +19,7 @@
   background-color: rgba(29, 28, 28, 0.808);
 }
 
-.cart-table-header > thead {
+.cart-table-header > th {
   width: 25%;
 }
 
@@ -63,6 +63,10 @@ p > button {
   height: 4rem;
   background-color: rgb(245, 211, 117);
   box-shadow: 5px 5px 5px grey;
+}
+.checkout>div{
+  display: flex;
+  justify-content: space-between;
 }
 @media screen and (max-width: 24rem) {
   .cart-table{

@@ -22,55 +22,8 @@ export default function App() {
 
   const [error1, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [pastOrder, setPastOrder] = useState([
-    {
-      orderId: 1,
-      noOfItems: 3,
-      date: 'Sun 04 Mar 2018',
-      amount: 120,
-      items: [
-        {
-          id: 1,
-          name: 'Banana',
-          count: 0,
-          quantity: 1,
-          price: 40,
-        },
-        {
-          id: 2,
-          image: './assets/apple.png',
-          name: 'Apple',
-          count: 0,
-          quantity: 1,
-          price: 40,
-        },
-      ],
-    },
-    {
-      orderId: 2,
-      noOfItems: 2,
-      date: 'Sun 03 Mar 2018',
-      amount: 80,
-      items: [
-        {
-          id: 1,
-          image: './assets/banana.png',
-          name: 'Banana',
-          count: 0,
-          quantity: 1,
-          price: 40,
-        },
-      ],
-    },
-  ]);
+  const [pastOrder, setPastOrder] = useState([]);
 
-  const initializeCartItem = (items) => items.reduce((acc, product) => {
-    const { category } = product;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    return acc;
-  }, {});
   const groupByCategory = (items) => items.reduce((acc, product) => {
     const { category } = product;
     if (!acc[category]) {
@@ -91,8 +44,6 @@ export default function App() {
       url: banana,
     }));
     const categorizedProduct = groupByCategory(allProducts);
-    const initCartItem = initializeCartItem(allProducts);
-    setCartItem(initCartItem);
     setCategories(categorizedProduct);
     setProduct(allProducts);
   }, []);
@@ -103,41 +54,32 @@ export default function App() {
     if (pastProducts) setIsLoaded(true);
     else { setError(error); setIsLoaded(true); }
     console.log(pastProducts);
-    // const allProducts = pastProducts.map((eachProduct) => ({
-    //   ...eachProduct,
-    //   inCartCount: 0,
-    //   url: banana,
-    // }));
-    // const categorizedProduct = groupByCategory(allProducts);
-    // const initCartItem = initializeCartItem(allProducts);
-    // setCartItem(initCartItem);
-    // setCategories(categorizedProduct);
-    // setProduct(allProducts);
+    setPastOrder(pastProducts);
   }, []);
 
   const onDecrement = (id, category) => {
-    const newCount = (categorized[category].find(
-      (product) => { if (product.id === id) return product.inCartCount > 0; return false; },
-    )) ? cartCount - 1 : cartCount;
-    setCartCount(newCount);
     const newProduct = categorized[category].map((product) => (product.id === id ? {
       ...product,
+      count: (product.inCartCount >= 0 && product.inCartCount > 0)
+        ? product.count + 1 : product.count,
       inCartCount: product.inCartCount > 0 ? product.inCartCount - 1 : product.inCartCount,
-      count: product.inCartCount > 0 ? product.count + 1 : product.count,
     } : product));
+
+    const newCount = (categorized[category].find(
+      (product, index) => {
+        if (product.id === id) { return (product.count < newProduct[index].count); } return false;
+      },
+    )) ? cartCount - 1 : cartCount;
+
     categorized[category] = newProduct;
     setCategories(categorized);
+    setCartCount(newCount);
     const newCartItem = categorized[category].filter((product) => product.inCartCount > 0);
-    setCartItem(newCartItem);
+    cartItem[category] = newCartItem;
+    setCartItem(cartItem);
   };
 
   const onIncrement = (id, category) => {
-    const newCount = (categorized[category].find(
-      (product) => {
-        if (product.id === id) return (product.count > 0 && product.inCartCount > 0); return false;
-      },
-    )) ? cartCount + 1 : cartCount;
-    setCartCount(newCount);
     const newProduct = categorized[category].map((eachProduct) => (
       eachProduct.id === id ? {
         ...eachProduct,
@@ -145,11 +87,28 @@ export default function App() {
         count: eachProduct.count > 0 ? eachProduct.count - 1 : eachProduct.count,
       } : eachProduct
     ));
+    const newCount = (categorized[category].find(
+      (product, index) => {
+        if (product.id === id) return (product.count > newProduct[index].count); return false;
+      },
+    )) ? cartCount + 1 : cartCount;
     categorized[category] = newProduct;
     setCategories(categorized);
+    setCartCount(newCount);
     const newCartItem = categorized[category].filter((product) => product.inCartCount > 0);
     cartItem[category] = newCartItem;
     setCartItem(cartItem);
+  };
+
+  const orderCart = async (items) => {
+    const { data, error } = await axios.post('/orders', items);
+    if (!error) {
+      pastOrder.push(data.data);
+      console.log('pastorder with new', pastOrder);
+      setPastOrder(pastOrder);
+      setCartItem([]);
+      setCartCount(0);
+    }
   };
 
   if (error1) {
@@ -184,10 +143,10 @@ export default function App() {
             <Cart productList={cartItem} cartCount={cartCount} />
           </Route>
           <Route path="/allOrders">
-            <AllOrders order={pastOrder} />
+            <AllOrders order={pastOrder} groupByCategory={groupByCategory} />
           </Route>
           <Route path="/checkout">
-            <Checkout />
+            <Checkout productList={cartItem} orderCart={orderCart} />
           </Route>
         </Switch>
       </BrowserRouter>
