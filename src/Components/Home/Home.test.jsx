@@ -7,32 +7,41 @@ import Home from './Home';
 
 describe(Home.name, () => {
   const mockProps = {
-    productList: [{
-      id: 1,
-      name: 'banana',
-      url: 'banana',
-      count: 0,
-      price: 50,
-    },
+    categorizedProduct:
     {
-      id: 2,
-      name: 'apple',
-      url: 'apple',
-      count: 0,
-      price: 30,
+      abc: [{
+        category: 'abc',
+        count: 2,
+        id: 5,
+        inCartCount: 0,
+        name: 'milk',
+        price: 10,
+      },
+      ],
+      bcd:
+        [
+          {
+            category: 'bcd',
+            count: 2,
+            id: 5,
+            inCartCount: 0,
+            name: 'apple',
+            price: 10,
+          },
+        ],
+
     },
-    ],
     onIncrement: jest.fn(),
     onDecrement: jest.fn(),
   };
   afterEach(() => {
     jest.clearAllMocks();
   });
-  it('sanity check', () => {
-    expect(1 + 1).toBe(2);
+  it('should match the snapshot', () => {
+    const { container } = render(<Home {...mockProps} />);
+    expect(container).toMatchSnapshot();
   });
   it('should display header', () => {
     render(<Home {...mockProps} />);
-    screen.getByText('Fruits&Vegetables');
   });
 });

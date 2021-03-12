@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { ThemeContext } from '../../ThemeContext';
 import MyBasket from '../MyBasket/MyBasket';
 
@@ -30,3 +30,6 @@ const NavBar = (props) => {
   );
 };
 export default NavBar;
+NavBar.propTypes = {
+  itemInCart: PropTypes.number.isRequired,
+};

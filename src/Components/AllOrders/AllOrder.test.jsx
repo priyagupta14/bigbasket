@@ -2,43 +2,38 @@ import React from 'react';
 import {
   fireEvent, render, screen,
 } from '@testing-library/react';
-import AllOrder from './AllOrders';
+import { Route, BrowserRouter } from 'react-router-dom';
+import AllOrders from './AllOrder';
 
-describe(AllOrder.name, () => {
-  const mockProps = [
-    {
-      orderId: 1,
-      noOfItems: 3,
-      date: 'Sun 04 Mar 2018',
-      amount: 120,
-      items: [
-        {
-          id: 1,
-          name: 'Banana',
-          count: 0,
-          quantity: 1,
-          price: 40,
-        },
-        {
-          id: 2,
-          image: './assets/apple.png',
-          name: 'Apple',
-          count: 0,
-          quantity: 1,
-          price: 40,
-        },
-      ],
-    },
-  ];
-  it('sanity check', () => {
-    expect(1 + 1).toBe(2);
+describe(AllOrders.name, () => {
+  const mockProps = {
+    order: [
+      {
+        items: [
+          {
+            id: 1,
+            name: 'pp',
+            count: 20,
+            price: 12,
+            category: 'idk',
+          },
+        ],
+        id: 1,
+        date: 123,
+      },
+    ],
+    productList: [],
+  };
+  it('should match the snapShot', () => {
+    const { container } = render(<BrowserRouter><AllOrders {...mockProps} /></BrowserRouter>);
+    expect(container).toMatchSnapshot();
   });
   it('should display Past Orders and headers', () => {
-    render(<AllOrder order={mockProps} />);
+    render(<AllOrders {...mockProps} />);
     screen.getByText('Past Orders');
     screen.getByText('Order');
-    screen.getByText('Items');
-    screen.getByText('Date');
+    screen.getByText('items');
+    screen.getByText('Order Date');
     screen.getByText('Amount');
   });
 });

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from '../Counter/Counter';
@@ -6,7 +5,7 @@ import './Product.scss';
 
 const Product = (props) => (
   <div className="product-card-element">
-    <img src={props.product.url} alt="fruitItem" />
+    <img data-testid="product-img" src={props.product.url} alt="fruitItem" />
     <p>{props.product.name}</p>
     <div className="price-counter">
       <p>
@@ -32,6 +31,7 @@ Product.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  category: PropTypes.string.isRequired,
 };
 Product.propTypes = {
   onIncrement: PropTypes.func.isRequired,

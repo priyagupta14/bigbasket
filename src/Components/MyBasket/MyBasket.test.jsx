@@ -5,11 +5,12 @@ import {
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MyBasket from './MyBasket';
 
-xdescribe(MyBasket.name, () => {
-  const mockProps = {
-    productList: [],
-  };
+describe(MyBasket.name, () => {
   it('sanity test', () => {
     expect(1 + 1).toBe(2);
+  });
+  it('should display "MyCart" and items in my cart', () => {
+    render(<MyBasket itemInCart={0} />);
+    screen.getByText('MyCart0');
   });
 });

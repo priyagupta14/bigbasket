@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */ // how to add validation for onIncrement?
 import React from 'react';
-// import PropTypes from 'prop-types';
-import Product from '../Product/Product';
+import PropTypes from 'prop-types';
 import './Home.scss';
+import Product from '../Product/Product';
 
 const Home = ({ categorizedProduct, onIncrement, onDecrement }) => (
   <div>
@@ -25,3 +24,20 @@ const Home = ({ categorizedProduct, onIncrement, onDecrement }) => (
   </div>
 );
 export default Home;
+
+Home.propTypes = {
+  categorizedProduct: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        count: PropTypes.number.isRequired,
+        inCartCount: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
+};
+Home.propTypes = {
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+};

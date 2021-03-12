@@ -2,7 +2,7 @@ import React from 'react';
 import {
   fireEvent, render, screen,
 } from '@testing-library/react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeContext } from '../../ThemeContext';
 
 import NavBar from './NavBar';

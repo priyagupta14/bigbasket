@@ -1,21 +1,33 @@
-.cart-table-header {
+.orders-table-header {
   text-align: left;
 }
+.orders-table > thead>tr {
+  display: flex;
+  justify-content: space-between;
+}
+.orders-table{
 
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 5rem;
+}
 .item-value {
   text-align: left;
 }
 
 .orders-table-header > th {
-  width: 50%;
-  background-color: rgba(29, 28, 28, 0.808);
+  width: 25%;
+  background-color: rgba(0, 0, 0, 0.808);
+  color: aliceblue;
 }
 
-.item-value > td {
-  width:50%;
+.order-value > td {
+  width:25%;
 }
 tbody>tr>td{
-  width: 50%
+  width: 25%
 }
 
 .title {

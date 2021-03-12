@@ -3,16 +3,14 @@ import React from 'react';
 import {
   fireEvent, render, screen,
 } from '@testing-library/react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Cart from './Cart';
 
 describe(Cart.name, () => {
   const mockProps = {
-    productList: [],
+    productList: {},
+    cartCount: 5,
   };
-  it('sanity test', () => {
-    expect(1 + 1).toBe(2);
-  });
   it('should match snapshot', () => {
     const { container } = render(
       <BrowserRouter>
@@ -23,12 +21,24 @@ describe(Cart.name, () => {
   });
   it('should display headers', () => {
     render(<BrowserRouter><Cart {...mockProps} /></BrowserRouter>);
-    screen.getByText('Your Basket(0item(s))');
-    screen.getByText('ITEM DESCRIPTION');
-    screen.getByText('UNIT PRICE');
-    screen.getByText('QUANTITY');
-    screen.getByText('SUBTOTAL');
-
-    screen.getByText('SUBTOTAL');
+    screen.getByText('Your Basket(5item(s))');
+    screen.getByText('TOTAL');
+    screen.getByText('Rs.0');
+  });
+  // ask: why it is giving tagname of button as a
+  it('should redirect to checkout page', () => {
+    render(<BrowserRouter><Cart {...mockProps} /></BrowserRouter>);
+    const checkoutPage = screen.getByText('CHECKOUT');
+    expect(checkoutPage.tagName).toBe('A');
+    fireEvent.click(checkoutPage);
+    expect(document.location.href).toBe('http://localhost/checkout');
+  });
+  it('should redirect to home page', () => {
+    render(<BrowserRouter><Route><Cart {...mockProps} /></Route></BrowserRouter>);
+    screen.logTestingPlaygroundURL();
+    const homePage = screen.getByText('CONTINUE SHOPPING');
+    expect(homePage.tagName).toBe('A');
+    fireEvent.click(homePage);
+    expect(document.location.href).toBe('http://localhost/');
   });
 });

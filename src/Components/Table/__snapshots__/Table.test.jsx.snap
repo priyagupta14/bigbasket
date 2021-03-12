@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table should match the snapshot 1`] = `
+<div>
+  <table
+    border="1"
+    class="cart-table"
+  >
+    <thead>
+      <tr
+        class="cart-table-header"
+      >
+        <th>
+          ITEM DESCRIPTION
+        </th>
+        <th>
+          UNIT PRICE
+        </th>
+        <th>
+          QUANTITY
+        </th>
+        <th>
+          SUBTOTAL
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="title"
+      >
+        <td>
+          abc
+        </td>
+      </tr>
+      <tr
+        class="item-value"
+      >
+        <td>
+          milk
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          20
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

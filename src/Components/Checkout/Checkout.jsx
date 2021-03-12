@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './Checkout.css';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
-
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
 const dataMassaging = (productList) => {
@@ -26,10 +24,6 @@ const dataMassaging = (productList) => {
   ));
   return ({ items: eachItem });
 };
-
-// const axiosPost = (userDetails, cartDetails) => {
-//   const { data, error } = axios.post('/orders', cartDetails);
-// };
 
 const Checkout = ({ productList, orderCart }) => {
   const result = dataMassaging(productList);
@@ -52,7 +46,7 @@ const Checkout = ({ productList, orderCart }) => {
           .email('Invalid email address')
           .required('Please Enter Email'),
       })}
-      onSubmit={async (value) => {
+      onSubmit={(value) => {
         orderCart(result);
         console.log(value);
         alert(JSON.stringify('Thank you for Shopping'));
@@ -90,3 +84,17 @@ const Checkout = ({ productList, orderCart }) => {
   );
 };
 export default Checkout;
+
+Checkout.propTypes = {
+  productList: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        category: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
+  orderCart: PropTypes.func.isRequired,
+};

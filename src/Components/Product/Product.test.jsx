@@ -4,27 +4,25 @@ import {
   fireEvent, render, screen,
 } from '@testing-library/react';
 import Product from './Product';
-import Counter from '../Counter/Counter';
 
 describe(Product.name, () => {
   const mockProps = {
+    key: 1,
+    category: 'abc',
     product:
       {
-        id: 1,
+        key: 1,
         name: 'banana',
         url: 'banana',
-        count: 0,
+        inCartCount: 0,
         price: 50,
       },
-
+    itemCount: 1,
     onIncrement: jest.fn(),
     onDecrement: jest.fn(),
   };
   afterEach(() => {
     jest.clearAllMocks();
-  });
-  it('sanity test', () => {
-    expect(1 + 1).toBe(2);
   });
   it('should match snapshot', () => {
     const { container } = render(<Product {...mockProps} />);
@@ -33,12 +31,7 @@ describe(Product.name, () => {
   it('should display product details', () => {
     render(<Product {...mockProps} />);
     screen.getByText('banana');
-    // screen.getByTestId('banana');
     screen.getByText('MRP50/-');
-    render(<Counter
-      itemCount={mockProps.product.id}
-      onDecrement={mockProps.onDecrement}
-      onIncrement={mockProps.onIncrement}
-    />);
+    screen.getByTestId('product-img');
   });
 });

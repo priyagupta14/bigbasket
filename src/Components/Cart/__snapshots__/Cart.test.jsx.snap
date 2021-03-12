@@ -7,11 +7,12 @@ exports[`Cart should match snapshot 1`] = `
   >
     <h1>
       Your Basket(
-      0
+      5
       item(s))
     </h1>
     <div>
       <table
+        border="1"
         class="cart-table"
       >
         <thead>
@@ -32,22 +33,6 @@ exports[`Cart should match snapshot 1`] = `
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr
-            class="title"
-          >
-            <td>
-              Fruits&Vegatables
-            </td>
-          </tr>
-          <tr
-            class="title"
-          >
-            <td>
-              Dairy Products
-            </td>
-          </tr>
-        </tbody>
       </table>
     </div>
     <div
@@ -66,10 +51,15 @@ exports[`Cart should match snapshot 1`] = `
       <div
         class="checkout"
       >
-        <h1>
-          TOTAL Rs.
-          0
-        </h1>
+        <div>
+          <p>
+            TOTAL
+          </p>
+          <p>
+            Rs.
+            0
+          </p>
+        </div>
         <hr />
         <button
           type="button"

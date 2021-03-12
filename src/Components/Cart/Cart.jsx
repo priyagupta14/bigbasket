@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Table from '../Table/Table';
 import './Cart.css';
 
@@ -24,7 +25,7 @@ const Cart = (props) => {
         item(s))
       </h1>
       <div>
-        <Table productList={productList} />
+        <Table className="current-cart-table" productList={productList} />
       </div>
       <div className="cart-button">
         <button type="button">
@@ -42,7 +43,6 @@ const Cart = (props) => {
               {totalPrice}
             </p>
           </div>
-
           <hr />
           <button type="button">
             <Link
@@ -58,3 +58,16 @@ const Cart = (props) => {
   );
 };
 export default Cart;
+
+Cart.propTypes = {
+  productList: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        inCartCount: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
+  cartCount: PropTypes.number.isRequired,
+};
