@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkout should match the snapshot 1`] = `
+<div>
+  <div
+    class="checkout-form"
+  >
+    <h2>
+      Enter Details...
+    </h2>
+    <form
+      action="#"
+    >
+      <p>
+        <label
+          for="Name"
+        >
+            Name 
+        </label>
+        <input
+          name="Name"
+          type="text"
+          value=""
+        />
+      </p>
+      <p>
+        <label
+          for="Address"
+        >
+            Address 
+        </label>
+        <input
+          name="Address"
+          type="text"
+          value=""
+        />
+      </p>
+      <p>
+        <label
+          for="PhoneNo"
+        >
+            Phone no. 
+        </label>
+        <input
+          name="PhoneNo"
+          type="number"
+          value=""
+        />
+      </p>
+      <p>
+        <label
+          for="Email"
+        >
+            Email
+        </label>
+        <input
+          name="Email"
+          type="text"
+          value=""
+        />
+      </p>
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+`;

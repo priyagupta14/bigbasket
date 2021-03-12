@@ -43,10 +43,20 @@ export const mockPostOrder = {
 export const mockOrderedOrder = {
   items: [
     {
-      id: 2, name: 'pp', count: 1, category: 'idk', price: 24,
+      id: 4,
+      name: 'duster',
+      price: 80,
+      count: 1,
+      category: 'Household Items',
     },
     {
-      id: 3, name: 'bp', count: 1, category: 'idk123', price: 25,
+      id: 5,
+      name: 'milk',
+      price: 10,
+      count: 2,
+      category: 'Dairy & Eggs',
     },
   ],
+  id: 25,
+  date: 1615526811454,
 };

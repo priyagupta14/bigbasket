@@ -1,8 +1,8 @@
 import axios from 'axios';
 import utilsApi from './api';
-import { mockProducts, mockOrders, mockPostOrder } from '../../mockdata/api';
-
-// jest.mock('../');
+import {
+  mockProducts, mockOrders, mockPostOrder, mockOrderedOrder,
+} from '../../mockdata/api';
 
 describe('test api calls', () => {
   let axiosGetMock;
@@ -48,10 +48,10 @@ describe('test api calls', () => {
       await utilsApi.postOrders(mockPostOrder);
       expect(axiosPostMock).toHaveBeenCalledWith('/orders', mockPostOrder);
     });
-    xtest('should return items object', async () => {
-      axiosPostMock.mockResolvedValue({ mockPostOrder });
-      const postOrder = await utilsApi.postOrders(mockPostOrder);
-      expect(postOrder).toEqual(mockPostOrder);
+    test('should return items object', async () => {
+      axiosPostMock.mockResolvedValue({ data: mockOrderedOrder });
+      const postOrder = await utilsApi.postOrders(mockOrderedOrder);
+      expect(postOrder).toEqual(mockOrderedOrder);
     });
   });
 });

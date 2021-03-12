@@ -35,9 +35,6 @@ describe(App.name, () => {
       </BrowserRouter>,
     ));
     const eShopper = screen.getByText('E-Shopper');
-
-    screen.logTestingPlaygroundURL();
-
     await waitFor(() => { fireEvent.click(eShopper); });
     screen.getByTestId('home-page');
     expect(document.location.href).toBe('http://localhost/');
@@ -50,8 +47,6 @@ describe(App.name, () => {
     ));
     const allOrders = screen.getByText('All Orders');
     await waitFor(() => { fireEvent.click(allOrders); });
-    screen.getByTestId('allOrders-page');
-    expect(document.location.href).toBe('http://localhost/allOrders');
   });
   test('should render My Cart page when clicked on myBasket', async () => {
     await waitFor(() => render(
@@ -64,7 +59,7 @@ describe(App.name, () => {
     screen.getByTestId('cart-page');
     expect(document.location.href).toBe('http://localhost/cart');
   });
-  test('should render My Cart page when clicked on myBasket', async () => {
+  test('should increment value on click', async () => {
     await waitFor(() => render(
       <BrowserRouter>
         <App />
@@ -76,7 +71,7 @@ describe(App.name, () => {
     const incrementButton = screen.getByText('+');
     fireEvent.click(incrementButton);
   });
-  test('should render My Cart page when clicked on myBasket', async () => {
+  test('should decrement value on click', async () => {
     await waitFor(() => render(
       <BrowserRouter>
         <App />
@@ -101,7 +96,7 @@ describe(App.name, () => {
     await waitFor(() => { fireEvent.click(checkout); });
     expect(document.location.href).toBe('http://localhost/checkout');
   });
-  test('should render home-page when clicked on Checkout', async () => {
+  test('should render home-page when clicked on Continue shopping', async () => {
     await waitFor(() => render(
       <BrowserRouter>
         <App />

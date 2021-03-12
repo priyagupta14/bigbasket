@@ -17,10 +17,10 @@ const App = () => {
   const [cartItem, setCartItem] = useState({});
   const [theme, setTheme] = useState('light');
   const [categorized, setCategories] = useState({});
-
-  const [error1, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [pastOrder, setPastOrder] = useState([]);
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(async () => {
     let result = await apiUtil.getItems();
@@ -119,7 +119,7 @@ const App = () => {
     }
   };
 
-  if (error1) {
+  if (error) {
     return <div>error1.message</div>;
   }
   if (!isLoaded) {
