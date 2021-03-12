@@ -4,7 +4,7 @@ import './Home.scss';
 import Product from '../Product/Product';
 
 const Home = ({ categorizedProduct, onIncrement, onDecrement }) => (
-  <div>
+  <div data-testid="home-page">
     {Object.keys(categorizedProduct).map((category) => (
       <div key={category}>
         <h1>{category}</h1>

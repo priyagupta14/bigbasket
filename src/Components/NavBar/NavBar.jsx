@@ -3,7 +3,6 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../../ThemeContext';
-import MyBasket from '../MyBasket/MyBasket';
 
 const NavBar = (props) => {
   const theme = useContext(ThemeContext);
@@ -23,7 +22,11 @@ const NavBar = (props) => {
         </Link>
         <Link style={{ textDecoration: 'none', color: 'white' }} to="/cart">
           <p>MyBasket</p>
-          <MyBasket itemInCart={props.itemInCart} />
+          <p>
+            {`My Cart 
+            ${props.itemInCart}`}
+          </p>
+          {/* <MyBasket itemInCart={props.itemInCart} /> */}
         </Link>
       </div>
     </div>

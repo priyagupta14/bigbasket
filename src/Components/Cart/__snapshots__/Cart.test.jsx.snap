@@ -4,6 +4,7 @@ exports[`Cart should match snapshot 1`] = `
 <div>
   <div
     class="cart-div"
+    data-testid="cart-page"
   >
     <h1>
       Your Basket(

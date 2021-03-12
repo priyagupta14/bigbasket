@@ -8,7 +8,7 @@ const AllOrders = ({ order }) => {
   const total = order.map((eachOrder) => (
     eachOrder.items.reduce((acc, curVal) => acc + curVal.price, 0)));
   return (
-    <div>
+    <div data-testid="allOrders-page">
       <h1>Past Orders</h1>
       <hr />
       <table className="orders-table" border="1">

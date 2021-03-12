@@ -2,7 +2,9 @@
 
 exports[`Home should match the snapshot 1`] = `
 <div>
-  <div>
+  <div
+    data-testid="home-page"
+  >
     <div>
       <h1>
         abc

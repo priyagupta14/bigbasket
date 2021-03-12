@@ -158,7 +158,7 @@ const App = () => {
         className="toggle-button"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
-        <img src={setting} alt="setting" />
+        <img src={setting} alt="setting" data-testid="settings" />
       </button>
       <Switch>
         <Route path="/" exact>

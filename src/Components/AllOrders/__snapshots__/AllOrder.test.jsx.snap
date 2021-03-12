@@ -2,7 +2,9 @@
 
 exports[`AllOrders should match the snapShot 1`] = `
 <div>
-  <div>
+  <div
+    data-testid="allOrders-page"
+  >
     <h1>
       Past Orders
     </h1>

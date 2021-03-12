@@ -29,14 +29,10 @@ exports[`NavBar should match default theme snapshot 1`] = `
         <p>
           MyBasket
         </p>
-        <div
-          class="myBasket-container"
-        >
-          <p>
-            MyCart
+        <p>
+          My Cart 
             0
-          </p>
-        </div>
+        </p>
       </a>
     </div>
   </div>
@@ -72,14 +68,10 @@ exports[`NavBar should match light theme snapshot 1`] = `
         <p>
           MyBasket
         </p>
-        <div
-          class="myBasket-container"
-        >
-          <p>
-            MyCart
+        <p>
+          My Cart 
             0
-          </p>
-        </div>
+        </p>
       </a>
     </div>
   </div>

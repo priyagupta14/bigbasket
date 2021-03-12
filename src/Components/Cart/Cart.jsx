@@ -18,7 +18,7 @@ const Cart = (props) => {
     0,
   );
   return (
-    <div className="cart-div">
+    <div className="cart-div" data-testid="cart-page">
       <h1>
         Your Basket(
         {cartCount}
