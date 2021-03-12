@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
 import banana from './assets/images/banana.jpg';
 import setting from './assets/images/setting.png';
 import Home from './Components/Home/Home';
@@ -13,10 +11,8 @@ import Checkout from './Components/Checkout/Checkout';
 import { ThemeContext } from './ThemeContext';
 import groupByCategory from './Utils/GroupBy/groupByCategory';
 import apiUtil from './Utils/api/api';
-// import HookCounter from './Components/HookCounter/HookCounter';
 
 const App = () => {
-  // const [AllProduct, setProduct] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartItem, setCartItem] = useState({});
   const [theme, setTheme] = useState('light');
@@ -26,19 +22,9 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [pastOrder, setPastOrder] = useState([]);
 
-  // const groupByCategory = (items) => items.reduce((acc, product) => {
-  //   const { category } = product;
-  //   if (!acc[category]) {
-  //     acc[category] = [];
-  //   }
-  //   acc[category].push(product);
-  //   return acc;
-  // }, {});
-
   useEffect(async () => {
     let result = await apiUtil.getItems();
     const products = result;
-    console.log({ mockresponse: products });
     if (products) setIsLoaded(true);
     else {
       setError(result.error);
@@ -51,7 +37,6 @@ const App = () => {
     }));
     const categorizedProduct = groupByCategory(allProducts);
     setCategories(categorizedProduct);
-    // setProduct(allProducts);
 
     result = await apiUtil.getOrders();
     const pastProducts = result;
@@ -86,10 +71,8 @@ const App = () => {
     })
       ? cartCount - 1
       : cartCount;
-
     categorized[category] = newProduct;
     setCategories(categorized);
-    // console.log(82, categorized);
     setCartCount(newCount);
     const newCartItem = categorized[category].filter(
       (product) => product.inCartCount > 0,
@@ -116,11 +99,6 @@ const App = () => {
     })
       ? cartCount + 1
       : cartCount;
-    // const newCategory = {
-    //   ...categorized,
-    //   category: newProduct,
-    // };
-    // console.log('newCategory', newCategory);
     categorized[category] = newProduct;
     setCategories(categorized);
     setCartCount(newCount);
@@ -135,7 +113,6 @@ const App = () => {
     const allOrders = await apiUtil.postOrders(items);
     if (!allOrders.error) {
       pastOrder.push(allOrders.data);
-      console.log('pastorder with new', pastOrder);
       setPastOrder(pastOrder);
       setCartItem({});
       setCartCount(0);

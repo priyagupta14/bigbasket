@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../../ThemeContext';
 
-const NavBar = (props) => {
+const NavBar = ({ itemInCart }) => {
   const theme = useContext(ThemeContext);
   return (
     <div className={theme === 'light' ? 'light-navbar' : 'dark-navbar'}>
@@ -24,9 +24,8 @@ const NavBar = (props) => {
           <p>MyBasket</p>
           <p>
             {`My Cart 
-            ${props.itemInCart}`}
+            ${itemInCart}`}
           </p>
-          {/* <MyBasket itemInCart={props.itemInCart} /> */}
         </Link>
       </div>
     </div>

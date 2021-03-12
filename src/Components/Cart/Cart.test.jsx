@@ -25,7 +25,6 @@ describe(Cart.name, () => {
     screen.getByText('TOTAL');
     screen.getByText('Rs.0');
   });
-  // ask: why it is giving tagname of button as a
   it('should redirect to checkout page', () => {
     render(<BrowserRouter><Cart {...mockProps} /></BrowserRouter>);
     const checkoutPage = screen.getByText('CHECKOUT');

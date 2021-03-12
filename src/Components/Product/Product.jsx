@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import Counter from '../Counter/Counter';
 import './Product.scss';
 
-const Product = (props) => (
+const Product = ({
+  product, onIncrement, onDecrement, category,
+}) => (
   <div className="product-card-element">
-    <img data-testid="product-img" src={props.product.url} alt="fruitItem" />
-    <p>{props.product.name}</p>
+    <img data-testid="product-img" src={product.url} alt="fruitItem" />
+    <p>{product.name}</p>
     <div className="price-counter">
       <p>
         MRP
-        {props.product.price}
+        {product.price}
         /-
       </p>
       <Counter
-        onIncrement={() => props.onIncrement(props.product.id, props.category)}
-        onDecrement={() => props.onDecrement(props.product.id, props.category)}
-        itemCount={props.product.inCartCount}
+        onIncrement={() => onIncrement(product.id, category)}
+        onDecrement={() => onDecrement(product.id, category)}
+        itemCount={product.inCartCount}
       />
     </div>
   </div>

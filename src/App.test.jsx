@@ -64,13 +64,17 @@ describe(App.name, () => {
     screen.getByTestId('cart-page');
     expect(document.location.href).toBe('http://localhost/cart');
   });
-  xtest('should render My Cart page when clicked on myBasket', async () => {
+  test('should render My Cart page when clicked on myBasket', async () => {
     await waitFor(() => render(
       <BrowserRouter>
         <App />
       </BrowserRouter>,
     ));
-    screen.getByTestId('setting');
+    const eShopper = screen.getByText('E-Shopper');
+    await waitFor(() => { fireEvent.click(eShopper); });
+    screen.getByTestId('home-page');
+    const incrementButton = screen.getByText('+');
+    fireEvent.click(incrementButton);
   });
   test('should render My Cart page when clicked on myBasket', async () => {
     await waitFor(() => render(
@@ -78,6 +82,40 @@ describe(App.name, () => {
         <App />
       </BrowserRouter>,
     ));
-    screen.getByText('+');
+    const eShopper = screen.getByText('E-Shopper');
+    await waitFor(() => { fireEvent.click(eShopper); });
+    screen.getByTestId('home-page');
+    const decrementButton = screen.getByText('-');
+    fireEvent.click(decrementButton);
+  });
+  test('should render checkout-page when clicked on Checkout', async () => {
+    await waitFor(() => render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+    ));
+    const myBasket = screen.getByText('MyBasket');
+    await waitFor(() => { fireEvent.click(myBasket); });
+    screen.getByTestId('cart-page');
+    const checkout = screen.getByText('CHECKOUT');
+    await waitFor(() => { fireEvent.click(checkout); });
+    expect(document.location.href).toBe('http://localhost/checkout');
+  });
+  test('should render home-page when clicked on Checkout', async () => {
+    await waitFor(() => render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+    ));
+    const myBasket = screen.getByText('MyBasket');
+    await waitFor(() => { fireEvent.click(myBasket); });
+    screen.getByTestId('cart-page');
+    const homePage = screen.getByText('CONTINUE SHOPPING');
+    await waitFor(() => { fireEvent.click(homePage); });
+    expect(document.location.href).toBe('http://localhost/');
+  });
+  test('should not get items', async () => {
+    const mockReject = { data: null, error: 'error' };
+    jest.spyOn(apiUtil, 'getItems').mockRejectedValue(mockReject);
   });
 });
