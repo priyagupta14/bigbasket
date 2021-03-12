@@ -1,14 +1,21 @@
 import {
   fireEvent, render, screen, waitFor,
 } from '@testing-library/react';
-import axios from 'axios';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { mockOrderedOrder, mockPostOrder, mockProducts } from './mockdata/api';
-import { getItems, getOrders } from './Utils/api/api';
+import axiosApi from './Utils/api/api';
 
 describe(App.name, () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
+    jest.spyOn(axiosApi, 'getItems').mockResolvedValue(mockProducts);
+  });
+
   // let mockGetItems= jest.spyOn();
   // beforeEach(() => {
   //   getItems.mockResolvedValue(mockProducts);
@@ -19,10 +26,14 @@ describe(App.name, () => {
   //   expect(container).toMatchSnapshot();
   //   // await waitFor(() => render(<App />));
   // });
-  // test('should match the snapshot', async () => {
-  //   await waitFor(() => render(<App />));
-  //   expect(getItems).toHaveBeenCalledTimes(1);
-  // });
+  test('should match the snapshot', async () => {
+    const { container } = await waitFor(() => render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+    ));
+    expect(container).toMatchSnapshot();
+  });
   xtest('should render Home component and route t', () => {
 
   });

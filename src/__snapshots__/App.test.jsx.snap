@@ -3,7 +3,104 @@
 exports[`App should match the snapshot 1`] = `
 <div>
   <div>
-    Loading...
+    <div
+      class="light-navbar"
+    >
+      <a
+        href="/"
+        style="text-decoration: none; color: white;"
+      >
+        <br />
+        E-Shopper
+      </a>
+      <div
+        class="left-side-navbar"
+      >
+        <a
+          href="/allOrders"
+          style="text-decoration: none; color: white;"
+        >
+          <br />
+          All Orders
+        </a>
+        <a
+          href="/cart"
+          style="text-decoration: none; color: white;"
+        >
+          <p>
+            MyBasket
+          </p>
+          <div
+            class="myBasket-container"
+          >
+            <p>
+              MyCart
+              0
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <button
+      class="toggle-button"
+      type="button"
+    >
+      <img
+        alt="setting"
+        src="setting.png"
+      />
+    </button>
+    <div>
+      <div>
+        <h1>
+          Fruits & Vegatables
+        </h1>
+        <div
+          class="product-card"
+        >
+          <div
+            class="product-card-element"
+          >
+            <img
+              alt="fruitItem"
+              data-testid="product-img"
+              src="banana.jpg"
+            />
+            <p>
+              apple
+            </p>
+            <div
+              class="price-counter"
+            >
+              <p>
+                MRP
+                120
+                /-
+              </p>
+              <div
+                class="zeroProduct"
+              >
+                <button
+                  type="button"
+                >
+                          +      
+                </button>
+                <p>
+                  0
+                   
+                  in basket
+                </p>
+                <button
+                  type="button"
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

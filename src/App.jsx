@@ -12,7 +12,7 @@ import AllOrders from './Components/AllOrders/AllOrder';
 import Checkout from './Components/Checkout/Checkout';
 import { ThemeContext } from './ThemeContext';
 import groupByCategory from './Utils/GroupBy/groupByCategory';
-import { getItems, getOrders, postOrders } from './Utils/api/api';
+import apiUtil from './Utils/api/api';
 // import HookCounter from './Components/HookCounter/HookCounter';
 
 const App = () => {
@@ -36,8 +36,9 @@ const App = () => {
   // }, {});
 
   useEffect(async () => {
-    let result = await getItems();
+    let result = await apiUtil.getItems();
     const products = result;
+    console.log({ mockresponse: products });
     if (products) setIsLoaded(true);
     else {
       setError(result.error);
@@ -52,7 +53,7 @@ const App = () => {
     setCategories(categorizedProduct);
     // setProduct(allProducts);
 
-    result = await getOrders();
+    result = await apiUtil.getOrders();
     const pastProducts = result;
     if (pastProducts) setIsLoaded(true);
     else {
@@ -131,7 +132,7 @@ const App = () => {
   };
 
   const orderCart = async (items) => {
-    const allOrders = await postOrders(items);
+    const allOrders = await apiUtil.postOrders(items);
     if (!allOrders.error) {
       pastOrder.push(allOrders.data);
       console.log('pastorder with new', pastOrder);

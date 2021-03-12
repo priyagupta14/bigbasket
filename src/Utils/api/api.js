@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getItems = async () => {
+const getItems = async () => {
   try {
     const allItems = await axios.get('/items');
     return allItems.data.data;
@@ -8,7 +8,7 @@ export const getItems = async () => {
     return error;
   }
 };
-export const getOrders = async () => {
+const getOrders = async () => {
   try {
     const allOrders = await axios.get('/orders');
     return allOrders.data.data;
@@ -16,7 +16,7 @@ export const getOrders = async () => {
     return error;
   }
 };
-export const postOrders = async (orders) => {
+const postOrders = async (orders) => {
   try {
     console.log(orders);
     const allOrders = await axios.post('/orders', orders);
@@ -25,4 +25,4 @@ export const postOrders = async (orders) => {
     return error;
   }
 };
-// export default { getItems, getOrders };
+export default { getItems, getOrders, postOrders };

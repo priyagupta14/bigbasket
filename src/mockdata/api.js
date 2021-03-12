@@ -1,13 +1,12 @@
 /* eslint-disable import/prefer-default-export */
-export const mockProducts = {
-  data: [{
-    id: 1,
-    name: 'apple',
-    price: 120,
-    count: 20,
-    category: 'Fruits & Vegatables',
-  }],
-};
+export const mockProducts = [{
+  id: 1,
+  name: 'apple',
+  price: 120,
+  count: 20,
+  category: 'Fruits & Vegatables',
+}];
+
 export const mockOrders = {
   items: [
     {
